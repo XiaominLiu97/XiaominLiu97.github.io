@@ -12,6 +12,6 @@ My current research interests focus on **Optical communication networking** .
 - **Optimization**
   - 8x8 High-thoughput Soft-output MIMO detector (TVLSI'21)
 
-My research interest includes speech synthesis, neural machine translation and automatic music generation. I have published 50+ papers (<a href='https://scholar.google.com/citations?user=K1JGQBIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>) at the top international AI conferences such as NeurIPS, ICML, ICLR, KDD. 
+My research interest includes speech synthesis, neural machine translation and automatic music generation. I have published 50+ papers  at the top international AI conferences such as NeurIPS, ICML, ICLR, KDD. 
 
-
+# (<a href='https://scholar.google.com/citations?user=K1JGQBIAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"> </a>)
