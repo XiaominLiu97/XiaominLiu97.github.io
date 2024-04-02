@@ -1,7 +1,7 @@
 
 I'm a Ph.D candidate for Electrical Science and Technology at the Department of Electronic enginnering (电子系), Shanghai Jiao Tong University, Shanghai, China, and under the supervision of Professor [Qunbi Zhuge](https://zhuge.sjtu.edu.cn/). 
 
-My current research interests focus on **Optical communication networking**  (<a href='https://scholar.google.com/citations?user=Jhntj54AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). 
+My current research interests focus on **Optical communication networking** . 
 - **Optical network**
   - Multi-band modeling for QoT
     - Preprocessing: *feature learning network* (OFC)
