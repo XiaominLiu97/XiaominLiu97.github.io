@@ -21,5 +21,4 @@ redirect_from:
 
 This is forked from open-sourced template version [AcadHomepage ![](https://img.shields.io/github/stars/RayeRen/acad-homepage.github.io?style=social)](https://github.com/RayeRen/acad-homepage.github.io).
 
-<script type="text/javascript" src="//rf.revolvermaps.com/0/0/4.js?i=5tlnsxtssam&amp;m=3&amp;h=128&amp;c=ff0000&amp;r=0" async="async"></script>
-
+<div style="display:inline-block;width:400px;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/7.js?i=586nvgxswis&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;sx=0" async="async"></script></div>
