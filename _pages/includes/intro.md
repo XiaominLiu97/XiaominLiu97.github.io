@@ -1,15 +1,14 @@
 
-I'm a Ph.D candidate for Electrical Science and Technology at the Department of Electronic enginnering (电子系), Shanghai Jiao Tong University, Shanghai, China, and under the supervision of Professor [Qunbi Zhuge](https://zhuge.sjtu.edu.cn/). 
+I'm a Ph.D candidate for Information engineering at the Department of Electronic engineering (电子系), Shanghai Jiao Tong University, Shanghai, China, and under the supervision of Professor [Qunbi Zhuge](https://zhuge.sjtu.edu.cn/). 
 
-My current research interests focus on **Optical communication networking** . 
-- **Optical network**
-  - Multi-band modeling for QoT
-    - Preprocessing: *feature learning network* (OFC)
-    
-  - Nonlinearity
-- **Monitoring**
-  - Efficient Sequence Generator and MAC Implementation (NANOARCH'22, TNANO'24)
-- **Optimization**
-  - 8x8 High-thoughput Soft-output MIMO detector (TVLSI'21)
+My research focus on the modeling, monitoring, and optimization for the long-haul WDM optical networks (especially the Backbone networks), aim at building self-driving optical networks with the assistance of data-driven machine learning techniques. I am also working on the control and optimization for the multi-band optical system
+- **Physical layer modeling**
+  - QoT estimation for multi-band system
+  - Fiber nonlinearity
+  - Optical amplifiers (EDFA & Raman amplifier)
+- **Physical layer monitoring**
+  - Fiber nonlinearity, Soft failures, Filtering effect, etc.
+- **Nertwork Optimization**
+  - Power optimization in C and C&L band for Capacity optimization
 
-My research interest includes speech synthesis, neural machine translation and automatic music generation. I have published 50+ papers  at the top international AI conferences such as NeurIPS, ICML, ICLR, KDD. 
+
