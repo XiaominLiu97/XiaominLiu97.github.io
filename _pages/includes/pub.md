@@ -47,7 +47,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 [Fusing Physics to Fiber Nonlinearity Model for Optical Networks Based on Physics-Guided Neural Networks](https://ieeexplore.ieee.org/document/9802856) \\
 **Xiaomin Liu**, Yunyun Fan, Yihao Zhang, Meng Cai, Lei Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2023] as the **Best student paper**.
+- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2021](https://www.optica.org/events/global_calendar/events/2023/asia_communications_photonics_conf_(acp)_and_photo/) as the **Best student paper**.
 - In this paper,  we propose a fiber model based on the physics-guided neural
 networks (PGNN).The PGNN-based model is compared with traditional neural networks in an experimental link to further illustrate its superior accuracy and generalizability.
 
