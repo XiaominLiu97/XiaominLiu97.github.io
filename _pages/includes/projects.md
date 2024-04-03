@@ -1,9 +1,4 @@
----
-layout: archive
-title: ""
-permalink: /Projects/
-author_profile: true
----
+
 
 
 # projects
