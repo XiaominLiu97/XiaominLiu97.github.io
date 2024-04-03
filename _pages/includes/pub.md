@@ -35,7 +35,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 [SMOF: Simultaneous Modeling and Optimization Framework for Raman Amplifiers in C+L-band Optical Networks](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=Jhntj54AAAAJ&sortby=pubdate&citation_for_view=Jhntj54AAAAJ:hC7cP41nSMkC) \\
 **Xiaomin Liu**, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50). The extension of {ECOC 2023]https://ieeexplore.ieee.org/abstract/document/10484863.
+- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
 - In this paper, we propose a simultaneous modeling and optimization framework (SMOF), to model and optimize the gain profile of an RA in a data-efficient manner.
 
 </div>
