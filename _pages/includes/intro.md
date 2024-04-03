@@ -19,4 +19,7 @@ My research focus on the modeling, monitoring, and optimization for the long-hau
 - **Nertwork Optimization**
   - Power optimization in C and C&L band for Capacity optimization
 
+My CV is also available to download [here](../images/CV_20240403.pdf){:target="_blank"}.
+
+
 
