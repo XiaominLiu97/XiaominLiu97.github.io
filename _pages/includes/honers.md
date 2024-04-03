@@ -7,5 +7,5 @@
 - *2020*, *2021*, National PhD Scholarship (2 Times, Top 2%)
 - *2020.06*, [Excellent Bachelor Thesis of Shanghai Jiao Tong University](https://sjcg.jwc.sjtu.edu.cn/Index.html) (Top 1%) 
 - *2020*, Shanghai Outstanding Graduates (Top 5%)
-- *2017*,*2018*,*2019*, The Academic Scholarship of Shanghai Jiao Tong University
+- *2017*, *2018*, *2019*, The Academic Scholarship of Shanghai Jiao Tong University
 
