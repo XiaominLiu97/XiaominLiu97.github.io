@@ -8,10 +8,10 @@
 
 [Auto-DTWave:Digital twin adided](https://papers.nips.cc/paper/8580-fastspeech-fast-robust-and-controllable-text-to-speech.pdf) \\
 **Xiaomin Liu**, Qunbi ZHuge
-[**Project**](https://speechresearch.github.io/fastspeech/) <strong><span class='show_paper_citations' data='4FA6C0AAAAAJ:qjMakFHDy7sC'></span></strong>
+
 
 - FastSpeech is the first fully parallel end-to-end speech synthesis model.
-- **Academic Impact**: This work is accepted by OFC 2024 . 
+- **Academic Impact**: This work is accepted by OFC 2024 with oral presentation. 
 - **Industry Impact**: Good
 </div>
 </div>
