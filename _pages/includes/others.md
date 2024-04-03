@@ -13,5 +13,3 @@
 - *2021.09*, Xiaomin Liu, “Design and deployment of the data-driven fiber nonlinearity estimation for dynamics optical 
 networks”, Optoelectronics Global Conference (OGC 2021), Shenzhen, China, 2021.
 
-# 💻 Internships
-- 
