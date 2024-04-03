@@ -9,7 +9,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 [Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://www.ofcconference.org/zh-cn/home/) \\
 **Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
--Accepted by [OFC 2024](https://www.ofcconference.org/zh-cn/home/)
+- Accepted by [OFC 2024](https://www.ofcconference.org/zh-cn/home/)
 - We develop joint online digital twin (DT) construction and amplifier configuration with continuous wavelength loading in a commercial testbed. The DT achieves an RMSE of 0.37dB, assisting near-optimal amplifier configuration with <0.1dB average Q-factor deviation.
 
 
