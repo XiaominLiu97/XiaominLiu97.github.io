@@ -41,7 +41,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 </div>
 
 ## 🚀 Physical Layer Modeling
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ACP 2021</div><img src='images/SMOF_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ACP 2021</div><img src='images/PGNN_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Fusing Physics to Fiber Nonlinearity Model for Optical Networks Based on Physics-Guided Neural Networks](https://ieeexplore.ieee.org/document/9802856) \\
