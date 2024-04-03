@@ -28,7 +28,6 @@ Here are selected publications. For full publication list, please to my [CV](../
 </div>
 
 
-
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2024 & ECOC2023</div><img src='images/SMOF_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
