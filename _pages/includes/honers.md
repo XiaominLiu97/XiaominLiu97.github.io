@@ -1,5 +1,5 @@
 # 🎖 Honors and Awards
-- *2024.10*, Corning Woman Scholar (Awarded in OFC, 2024) [[Link]](https://www.optica.org/foundation/opportunities/scholarships/corningwomenscholars/)
+- *2024.10*, [Corning Woman Scholar](https://www.optica.org/foundation/opportunities/scholarships/corningwomenscholars/) (3 in the world each year, awarded in OFC, 2024) 
 - *2023.06*, SPIE Optics and Photonics Education Scholarship (6 in China and 72 around the world)[[Link]](https://spie.org/membership/student-hub/scholarships/optics-and-photonics-education-scholarships/current-winners)
 - *2022.10*, Intel Scholarship (5 in Shanghai Jiao Tong University and 65 in China)
 - *2022*, First Prize of the Outstanding Ph.D. Student of State Key Laboratory of Advanced Optical Communication Systems and Networks 
