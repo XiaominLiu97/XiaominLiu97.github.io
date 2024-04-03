@@ -14,7 +14,7 @@
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Advanced Photonics</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Advanced Photonics</div><img src='images/AP_BIF_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Digital Twin Modeling and controlling of Optical Power Evolution Enabling Autonomous-driving Optical Networks: A Bayesian Approach](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=Jhntj54AAAAJ&sortby=pubdate&citation_for_view=Jhntj54AAAAJ:hC7cP41nSMkC) \\
