@@ -1,6 +1,6 @@
 
 # 📝 Publications 
-## :oncoming_automobile: Autonomous Driving Optical Networks
+## :rocket: Autonomous Driving Optical Networks
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC 2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
