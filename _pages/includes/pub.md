@@ -41,3 +41,15 @@ Here are selected publications. For full publication list, please to my [CV](../
 </div>
 
 ## 🚀 Physical Layer Modeling
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ACP 2021</div><img src='images/SMOF_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Fusing Physics to Fiber Nonlinearity Model for Optical Networks Based on Physics-Guided Neural Networks](https://ieeexplore.ieee.org/document/9802856) \\
+**Xiaomin Liu**, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
+
+- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2023] as the **Best student paper**.
+- In this paper,  we propose a fiber model based on the physics-guided neural
+networks (PGNN).The PGNN-based model is compared with traditional neural networks in an experimental link to further illustrate its superior accuracy and generalizability.
+
+</div>
+</div>
