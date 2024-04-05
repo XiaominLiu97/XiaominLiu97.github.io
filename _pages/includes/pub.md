@@ -1,6 +1,7 @@
 
 # 📝 Publications 
 Here are selected publications. For full publication list, please to my [CV](../images/CV_20240403.pdf){:target="_blank"}.
+†:equal contribution.
 ## 🚀 Autonomous Driving Optical Networks
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC 2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
@@ -41,6 +42,18 @@ Here are selected publications. For full publication list, please to my [CV](../
 </div>
 
 ## 🚀 Digital Twin and Physical Layer Modeling
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JOCN 2023</div><img src='images/meta_learning_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Building A Digital Twin for Intelligent Optical Networks [Invited Tutorial]](https://ieeexplore.ieee.org/abstract/document/10187397) \\
+Qunbi Zhuge†,**Xiaomin Liu**†, Huazhi Lun, Lei Liu, Yihao Zhang, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
+
+- Accepted by [JOCN](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
+- In this tutorial, we introduce and discuss three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks. 
+
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ACP 2021</div><img src='images/PGNN_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -65,4 +78,3 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 
 </div>
 </div>
-
