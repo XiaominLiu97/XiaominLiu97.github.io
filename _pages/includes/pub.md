@@ -46,7 +46,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 <div class='paper-box-text' markdown="1">
 
 [Building A Digital Twin for Intelligent Optical Networks [Invited Tutorial]](https://ieeexplore.ieee.org/abstract/document/10187397) \\
-Qunbi Zhuge†,**Xiaomin Liu**†, Huazhi Lun, Lei Liu, Yihao Zhang, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
+Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu, Xueying Zhong, Jiaping Wu, Ruoxuan Gao Lilin Yi, Weisheng Hu
 
 - Accepted by [JOCN](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
 - In this tutorial, we introduce and discuss three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks. 
@@ -75,6 +75,19 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 
 - Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
 - In this paper, we propose a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework can improve the model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.
+
+</div>
+</div>
+
+## 🚀 Network Telemetry
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2021</div><img src='images/telemetry_layer_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[A Data-Fusion-Assisted Telemetry Layer for Autonomous Optical Networks [Invited Paper]](https://ieeexplore.ieee.org/abstract/document/9385119) \\
+**Xiaomin Liu**, Huazhi Lun, Ruoxuan Gao, Meng Cai, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
+
+- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50).
+- In this paper, a data-fusion-assisted telemetry layer between the physical layer and control layer is proposed in this paper. The data fusion methodologies are elaborated on three different levels: Source Level, Space Level and Model Level. 
 
 </div>
 </div>
