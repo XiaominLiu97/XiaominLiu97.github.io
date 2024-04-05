@@ -40,7 +40,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 </div>
 </div>
 
-## 🚀 Physical Layer Modeling
+## 🚀 Digital Twin and Physical Layer Modeling
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ACP 2021</div><img src='images/PGNN_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
