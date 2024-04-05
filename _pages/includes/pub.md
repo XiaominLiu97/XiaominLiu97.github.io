@@ -54,7 +54,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ECOC 2020</div><img src='images/PGNN_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2022 ECOC 2020</div><img src='images/meta_learning_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [A Meta-Learning-Assisted Training Framework for Physical Layer Modeling in Optical Networks](https://ieeexplore.ieee.org/abstract/document/9693269) \\
@@ -63,5 +63,4 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 - Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
 - In this paper, we propose a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework can improve the model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.
 
-</div>
-</div>
+
