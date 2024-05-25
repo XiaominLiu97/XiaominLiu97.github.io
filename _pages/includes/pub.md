@@ -22,7 +22,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 [Digital Twin Modeling and controlling of Optical Power Evolution Enabling Autonomous-driving Optical Networks: A Bayesian Approach](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=Jhntj54AAAAJ&sortby=pubdate&citation_for_view=Jhntj54AAAAJ:hC7cP41nSMkC) \\
 **Xiaomin Liu**, Yihao Zhang, Yuli Chen, Yichen Liu, Meng Cai, Qizhi Qiu, Mengfan Fu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [Advanced Photonics](https://www.researching.cn/ap) 
+- Accepted by [Advanced Photonics](https://www.researching.cn/ap) （IF= 17.3）
 - We propose a Bayesian inference framework (BIF) to construct the digital twin of OAs and control OPE in a data-efficient manner. Only the informative data are collected to balance the exploration and exploitation of the data space, thus enabling efficient autonomous-driving optical networks (ADONs).
 
 </div>
