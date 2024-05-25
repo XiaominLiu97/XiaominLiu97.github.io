@@ -1,7 +1,7 @@
 
 # 📝 Publications 
 Here are selected publications. For full publication list, please to my [CV](../images/CV_20240403.pdf){:target="_blank"}.
-†:equal contribution.
+†:Joint first-author.
 ## 🚀 Autonomous Driving Optical Networks
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC 2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
