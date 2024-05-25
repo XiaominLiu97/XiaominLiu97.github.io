@@ -11,7 +11,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 **Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [OFC 2024](https://www.ofcconference.org/zh-cn/home/)
-- We develop joint online digital twin (DT) construction and amplifier configuration with continuous wavelength loading in a commercial testbed. The DT achieves an RMSE of 0.37dB, assisting near-optimal amplifier configuration with <0.1dB average Q-factor deviation.
+- Develop joint online digital twin (DT) construction and amplifier configuration with continuous wavelength loading in a commercial testbed. The DT achieves an RMSE of 0.37dB, assisting near-optimal amplifier configuration with <0.1dB average Q-factor deviation.
 
 </div>
 </div>
@@ -23,7 +23,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 **Xiaomin Liu**, Yihao Zhang, Yuli Chen, Yichen Liu, Meng Cai, Qizhi Qiu, Mengfan Fu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [Advanced Photonics](https://www.researching.cn/ap) （IF= 17.3）
-- We propose a Bayesian inference framework (BIF) to construct the digital twin of OAs and control OPE in a data-efficient manner. Only the informative data are collected to balance the exploration and exploitation of the data space, thus enabling efficient autonomous-driving optical networks (ADONs).
+- Propose a Bayesian inference framework (BIF) to construct the digital twin of OAs and control OPE in a data-efficient manner. Only the informative data are collected to balance the exploration and exploitation of the data space, thus enabling efficient autonomous-driving optical networks (ADONs).
 
 </div>
 </div>
@@ -36,7 +36,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 **Xiaomin Liu**, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [JLT](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
-- In this paper, we propose a simultaneous modeling and optimization framework (SMOF), to model and optimize the gain profile of an RA in a data-efficient manner.
+- Propose a simultaneous modeling and optimization framework (SMOF), to model and optimize the gain profile of an RA in a data-efficient manner.
 
 </div>
 </div>
@@ -49,7 +49,7 @@ Here are selected publications. For full publication list, please to my [CV](../
 Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu, Xueying Zhong, Jiaping Wu, Ruoxuan Gao Lilin Yi, Weisheng Hu
 
 - Accepted by [JOCN](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
-- In this tutorial, we introduce and discuss three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks. 
+- Introduce and discuss three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks. 
 
 </div>
 </div>
@@ -61,7 +61,7 @@ Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu
 **Xiaomin Liu**, Yunyun Fan, Yihao Zhang, Meng Cai, Lei Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2021](https://www.optica.org/events/global_calendar/events/2023/asia_communications_photonics_conf_(acp)_and_photo/) as the **Best student paper**.
-- We propose a fiber model based on the physics-guided neural
+- Propose a fiber model based on the physics-guided neural
 networks (PGNN).The PGNN-based model is compared with traditional neural networks in an experimental link to further illustrate its superior accuracy and generalizability.
 
 </div>
@@ -74,7 +74,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 **Xiaomin Liu**, Huazhi Lun, Lei Liu, Yihao Zhang, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
-- In this paper, we propose a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework can improve the model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.
+- Propose a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework can improve the model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.
 
 </div>
 </div>
@@ -87,7 +87,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 **Xiaomin Liu**, Huazhi Lun, Ruoxuan Gao, Meng Cai, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50).
-- In this paper, a data-fusion-assisted telemetry layer between the physical layer and control layer is proposed in this paper. The data fusion methodologies are elaborated on three different levels: Source Level, Space Level and Model Level. 
+- A data-fusion-assisted telemetry layer between the physical layer and control layer is proposed. The data fusion methodologies are elaborated on three different levels: Source Level, Space Level and Model Level. 
 
 </div>
 </div>
