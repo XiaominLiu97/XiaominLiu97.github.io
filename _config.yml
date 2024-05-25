@@ -6,7 +6,9 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Xiaomin Liu    > (刘晓敏)"
+title                    : ｜
+  Xiaomin Liu 
+  (刘晓敏)
 description              : "Ph.D candidate in School of Electrionic Engineering"
 repository               : "XiaominLiu97/XiaominLiu97.github.io"
 google_scholar_stats_use_cdn : true
