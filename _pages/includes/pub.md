@@ -86,7 +86,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 [A Data-Fusion-Assisted Telemetry Layer for Autonomous Optical Networks [Invited Paper]](https://ieeexplore.ieee.org/abstract/document/9385119) \\
 **Xiaomin Liu**, Huazhi Lun, Ruoxuan Gao, Meng Cai, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50).
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50).
 - A data-fusion-assisted telemetry layer between the physical layer and control layer is proposed. The data fusion methodologies are elaborated on three different levels: Source Level, Space Level and Model Level. 
 
 </div>
