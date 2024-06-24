@@ -42,7 +42,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 </div>
 
 ## 🚀 Digital Twin and Physical Layer Modeling
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JOCN 2023</div><img src='images/dt_invited_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JOCN 2023 & </div><img src='images/dt_invited_banner.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Building A Digital Twin for Intelligent Optical Networks [Invited Tutorial]](https://ieeexplore.ieee.org/abstract/document/10187397) \\
