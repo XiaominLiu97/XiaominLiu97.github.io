@@ -60,7 +60,7 @@ Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu
 [Fusing Physics to Fiber Nonlinearity Model for Optical Networks Based on Physics-Guided Neural Networks](https://ieeexplore.ieee.org/document/9802856) \\
 **Xiaomin Liu**, Yunyun Fan, Yihao Zhang, Meng Cai, Lei Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2021](https://www.optica.org/events/global_calendar/events/2023/asia_communications_photonics_conf_(acp)_and_photo/) as the **Best student paper**.
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ACP 2021](https://www.optica.org/events/global_calendar/events/2023/asia_communications_photonics_conf_(acp)_and_photo/) as the **Best student paper**.
 - Propose a fiber model based on the physics-guided neural
 networks (PGNN).The PGNN-based model is compared with traditional neural networks in an experimental link to further illustrate its superior accuracy and generalizability.
 
@@ -73,7 +73,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 [A Meta-Learning-Assisted Training Framework for Physical Layer Modeling in Optical Networks](https://ieeexplore.ieee.org/abstract/document/9693269) \\
 **Xiaomin Liu**, Huazhi Lun, Lei Liu, Yihao Zhang, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
 - Propose a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework can improve the model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.
 
 </div>
