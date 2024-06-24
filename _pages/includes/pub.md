@@ -22,7 +22,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 [Digital Twin Modeling and controlling of Optical Power Evolution Enabling Autonomous-driving Optical Networks: A Bayesian Approach](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=Jhntj54AAAAJ&sortby=pubdate&citation_for_view=Jhntj54AAAAJ:hC7cP41nSMkC) \\
 **Xiaomin Liu**, Yihao Zhang, Yuli Chen, Yichen Liu, Meng Cai, Qizhi Qiu, Mengfan Fu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [Advanced Photonics](https://www.researching.cn/ap) （IF= 20）
+- Accepted by [Advanced Photonics](https://www.researching.cn/ap) （IF= 20.6）
 - Propose a Bayesian inference framework (BIF) to construct the digital twin of OAs and control OPE in a data-efficient manner. Only the informative data are collected to balance the exploration and exploitation of the data space, thus enabling efficient autonomous-driving optical networks (ADONs).
 
 </div>
@@ -35,7 +35,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 [SMOF: Simultaneous Modeling and Optimization Framework for Raman Amplifiers in C+L-band Optical Networks](https://ieeexplore.ieee.org/document/10416326) \\
 **Xiaomin Liu**, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by Journal of Lightwave Technology [JLT](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
 - Propose a simultaneous modeling and optimization framework (SMOF), to model and optimize the gain profile of an RA in a data-efficient manner.
 
 </div>
