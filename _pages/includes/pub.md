@@ -35,7 +35,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 [SMOF: Simultaneous Modeling and Optimization Framework for Raman Amplifiers in C+L-band Optical Networks](https://ieeexplore.ieee.org/document/10416326) \\
 **Xiaomin Liu**, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by [JLT](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
+- Accepted by Journal of Lightwave Technology [JLT](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
 - Propose a simultaneous modeling and optimization framework (SMOF), to model and optimize the gain profile of an RA in a data-efficient manner.
 
 </div>
