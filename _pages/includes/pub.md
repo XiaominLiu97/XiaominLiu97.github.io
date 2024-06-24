@@ -10,7 +10,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 [Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://www.ofcconference.org/zh-cn/home/) \\
 **Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
-- Accepted by Optical Fiber Communication Conference [OFC 2024](https://www.ofcconference.org/zh-cn/home/)
+- Accepted by [Optical Fiber Communication Conference (OFC) 2024](https://www.ofcconference.org/zh-cn/home/)
 - Develop joint online digital twin (DT) construction and amplifier configuration with continuous wavelength loading in a commercial testbed. The DT achieves an RMSE of 0.37dB, assisting near-optimal amplifier configuration with <0.1dB average Q-factor deviation.
 
 </div>
