@@ -48,7 +48,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 [Building A Digital Twin for Intelligent Optical Networks [Invited Tutorial]](https://ieeexplore.ieee.org/abstract/document/10187397) \\
 Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu, Xueying Zhong, Jiaping Wu, Ruoxuan Gao Lilin Yi, Weisheng Hu
 
-- Accepted by [JOCN](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
+- Accepted by Journal of Optical Communication and Networking [JOCN](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
 - Introduce and discuss three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks. 
 
 </div>
