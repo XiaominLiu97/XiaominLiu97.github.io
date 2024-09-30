@@ -12,4 +12,4 @@ My research focus on the modeling, monitoring, and optimization for the long-hau
 
 My CV is also available to download [here](../images/CV_20240714.pdf){:target="_blank"}. <p style="color: red;">I am looking for job opportunities from the fall of 2025. </p>
 
-Ciao! Now I am a visiting student to Politecnico di Milano, working with Prof. [Massimo Tornatore]([https://zhuge.sjtu.edu.cn/](https://scholar.google.com/citations?hl=zh-CN&user=50-RA6kAAAAJ&view_op=list_works&sortby=pubdate).
+Ciao! Now I am a visiting student to Politecnico di Milano, working with Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao)).
