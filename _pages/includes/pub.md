@@ -7,7 +7,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://www.ofcconference.org/zh-cn/home/) \\
+[Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://ieeexplore.ieee.org/abstract/document/10526934) \\
 **Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
 - Accepted by [Optical Fiber Communication Conference (OFC) 2024](https://www.ofcconference.org/zh-cn/home/)
