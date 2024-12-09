@@ -1,4 +1,5 @@
 # 🎖 Honors and Awards
+- *2024.11*, First Prize of the Outstanding Ph.D. Student of State Key Laboratory of Advanced Optical Communication Systems and Networks 
 - *2024.09*, I am forntunate to be awarded China National Scholarship again！ (3 Times in Ph.D., Top 2%)
 - *2024.03*, [Corning Woman Scholar](https://www.optica.org/foundation/opportunities/scholarships/corningwomenscholars/) (3 worldwide each year, awarded in OFC, 2024) 
 - *2023.06*, [SPIE Optics and Photonics Education Scholarship](https://spie.org/membership/student-hub/scholarships/optics-and-photonics-education-scholarships/current-winners) (6 in China and 72 worldwide each year)
