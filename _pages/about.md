@@ -21,4 +21,4 @@ redirect_from:
 
 This is forked from open-sourced template version [AcadHomepage ![](https://img.shields.io/github/stars/RayeRen/acad-homepage.github.io?style=social)](https://github.com/RayeRen/acad-homepage.github.io).
 
-<script type="text/javascript" src="//rf.revolvermaps.com/0/0/4.js?i=5qg2ney226v&amp;m=3&amp;h=255&amp;c=ff0000&amp;r=0" async="async"></script>
+<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=a&t=n&d=a-5ch4Jkh3BwCvCQJ08NO0kf1vkW9d_VBngJMpUcGJ8'></script>
