@@ -4,7 +4,7 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 †:Joint first-author.
 ## 🚀 Autonomous Driving Optical Networks
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2025</div><img src='images/LLMagent.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2025</div><img src='images/LLMagent.svg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [First field trial of LLM-powered AI agent for lifecycle management of autonomous driving optical networks](https://arxiv.org/abs/2409.14605)\\
