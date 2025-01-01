@@ -1,6 +1,6 @@
 
 # 📝 Publications 
-I have pubslihed 7 first-authored journal papers and 7 first-authored conference papers. Here are some selected publications. For full publication list, please to my [CV](../images/CV_20240403.pdf){:target="_blank"}.
+I have pubslihed 7 first-authored journal papers and 8 first-authored conference papers. Here are some selected publications. For full publication list, please to my [CV](../images/CV_20240403.pdf){:target="_blank"}.
 †:Joint first-author.
 ## 🚀 Autonomous Driving Optical Networks
 
