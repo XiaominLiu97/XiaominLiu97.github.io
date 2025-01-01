@@ -7,6 +7,20 @@ I have pubslihed 7 first-authored journal papers and 7 first-authored conference
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
+[[First field trial of LLM-powered AI agent for lifecycle management of autonomous driving optical networks](https://arxiv.org/abs/2409.14605)]\\
+**Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Yuming Cheng, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
+
+- Accepted by [Optical Fiber Communication Conference (OFC) 2025](https://www.ofcconference.org/)
+- Build the world first field trial demonstration of the LLM-powered AI agent for the network lifecycle.
+- Support diverse network events, including wavelength add/drop,failure management, and power optimization.
+- Show the potentials of LLM to control and manage the autonomous optical networks.
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
 [Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://ieeexplore.ieee.org/abstract/document/10526934) \\
 **Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Meng Cai, Yichen Liu, Lilin Yi, Weisheng Hu, Qunbi Zhuge*
 
