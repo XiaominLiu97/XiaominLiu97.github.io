@@ -1,5 +1,5 @@
 # 🔥 News
-- *2024.12*: 🎉 My first authored paper named "[First Field Trial of LLM-Powered AI Agent for Lifecycle Management of Autonomous Driving Optical Networks](https://arxiv.org/abs/2409.14605)" is selected as the Top-scored paper and the OFC Corning best student paper finalist! The competition result will be announced during OFC. 
+- *2025.01*: 🎉 My first authored paper named "[First Field Trial of LLM-Powered AI Agent for Lifecycle Management of Autonomous Driving Optical Networks](https://arxiv.org/abs/2409.14605)" is selected as the Top-scored paper and the OFC Corning best student paper finalist! The competition result will be announced during OFC. 
 - *2024.12*: 🎉 I have been honored as the Academic Star at Shanghai Jiao Tong University! This prestigious award represents the highest recognition for graduate students at SJTU!
 - *2024.12*: 🎉 Two papers are accepted by OFC 2025 as oral presentations!
 - *2024.09*: 🎉 We are happy to share our latest work named "[First Field Trial of LLM-Powered AI Agent for Lifecycle Management of Autonomous Driving Optical Networks](https://arxiv.org/abs/2409.14605)" !
