@@ -1,4 +1,5 @@
 # 🎖 Honors and Awards
+- *2025.07*, [IEEE Photonics Society Graduate Student Scholarship](https://ieeephotonics.org/awards/graduate-student-scholarship/) (10 worldwide each year)
 - *2024.12*, Academic Star at Shanghai Jiao Tong University (～0.03%, only 10 each year, the highest honor for graduate students in SJTU)
 - *2024.11*, First Prize of the Outstanding Ph.D. Student of State Key Laboratory of Advanced Optical Communication Systems and Networks 
 - *2024.09*, China National Scholarship (3 Times in Ph.D., Top 2%)
