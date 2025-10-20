@@ -13,4 +13,3 @@ My research focus on the modeling, monitoring, and optimization for the long-hau
 My CV is also available to download [here](../images/CV_20240714.pdf){:target="_blank"}. 
 <p style="color: red;"> In Sep. 2025, I joined Huawei as the TopMind student (天才少年), working in the research lab of autonomous driving networks. </p>
 
-Ciao! 
