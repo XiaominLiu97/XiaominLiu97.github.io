@@ -11,5 +11,5 @@ I'm a Ph.D for Information engineering at the Department of Electronic engineeri
 My research focus on the modeling, monitoring, and optimization for the long-haul WDM optical networks (especially the Backbone networks), aim at building self-driving optical networks with the assistance of data-driven machine learning techniques. I am also working on the control and optimization for the multi-band optical system. <a href='https://scholar.google.com/citations?user=Jhntj54AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a> In Sep. 2024 to Aug. 2025, I was a visiting student to Politecnico di Milano, working on the collective communication scheduling under the supervision of Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao).
 
 My CV is also available to download [here](../images/CV_20240714.pdf){:target="_blank"}. 
-<p style="color: red;"> In Sep. 2025, I joined Huawei as the TopMind scholar (天才少年), working in the research lab of autonomous driving networks. </p>
+<p style="color: red;"> In Sep. 2025, I joined Huawei as the TopMind scholar (天才少年), working in the research lab of autonomous driving networks (which works on autonomous optical/wireless/computer networks, not cars). </p>
 
