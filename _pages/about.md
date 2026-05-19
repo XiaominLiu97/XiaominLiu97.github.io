@@ -13,26 +13,23 @@ redirect_from:
 {% include_relative includes/intro.md %}
 
 <style>
-.toggle-btn {
-  display: block;
-  margin: 10px auto;
-  padding: 8px 20px;
-  background-color: #224b8d;
-  color: white;
-  border: none;
-  border-radius: 4px;
+.toggle-link {
+  display: inline-block;
+  margin: 5px 0 10px 0;
+  color: #224b8d;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
 }
-.toggle-btn:hover {
-  background-color: #1a3a6e;
+.toggle-link:hover {
+  color: #1a3a6e;
+  text-decoration: underline;
 }
 .hidden-item {
   display: none;
 }
-.toggle-btn .toggle-icon {
-  margin-left: 5px;
+.toggle-link .toggle-icon {
+  margin-left: 3px;
 }
 </style>
 
@@ -53,27 +50,27 @@ document.addEventListener('DOMContentLoaded', function() {
       newsItems[i].classList.add('hidden-item');
     }
     
-    const btn = document.createElement('button');
-    btn.className = 'toggle-btn';
-    btn.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
+    const link = document.createElement('a');
+    link.className = 'toggle-link';
+    link.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
     
     let expanded = false;
-    btn.addEventListener('click', function() {
+    link.addEventListener('click', function() {
       expanded = !expanded;
       if (expanded) {
         for (let i = 4; i < newsItems.length; i++) {
           newsItems[i].classList.remove('hidden-item');
         }
-        btn.innerHTML = 'Show Less <span class="toggle-icon">▲</span>';
+        link.innerHTML = 'Show Less <span class="toggle-icon">▲</span>';
       } else {
         for (let i = 4; i < newsItems.length; i++) {
           newsItems[i].classList.add('hidden-item');
         }
-        btn.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
+        link.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
       }
     });
     
-    newsList.parentNode.insertBefore(btn, newsList.nextSibling);
+    newsList.parentNode.insertBefore(link, newsList.nextSibling);
   }
 });
 </script>
@@ -95,27 +92,27 @@ document.addEventListener('DOMContentLoaded', function() {
       honorsItems[i].classList.add('hidden-item');
     }
     
-    const btn = document.createElement('button');
-    btn.className = 'toggle-btn';
-    btn.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
+    const link = document.createElement('a');
+    link.className = 'toggle-link';
+    link.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
     
     let expanded = false;
-    btn.addEventListener('click', function() {
+    link.addEventListener('click', function() {
       expanded = !expanded;
       if (expanded) {
         for (let i = 6; i < honorsItems.length; i++) {
           honorsItems[i].classList.remove('hidden-item');
         }
-        btn.innerHTML = 'Show Less <span class="toggle-icon">▲</span>';
+        link.innerHTML = 'Show Less <span class="toggle-icon">▲</span>';
       } else {
         for (let i = 6; i < honorsItems.length; i++) {
           honorsItems[i].classList.add('hidden-item');
         }
-        btn.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
+        link.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
       }
     });
     
-    honorsList.parentNode.insertBefore(btn, honorsList.nextSibling);
+    honorsList.parentNode.insertBefore(link, honorsList.nextSibling);
   }
 });
 </script>
