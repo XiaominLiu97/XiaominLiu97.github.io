@@ -1,4 +1,5 @@
 ---
+layout: default
 permalink: /publications/
 title: "Publications"
 excerpt: ""
@@ -6,11 +7,11 @@ author_profile: true
 ---
 
 # 📝 Publications 
-I have pubslihed 7 first-authored journal papers and 8 first-authored conference papers. Here are some selected publications. For full publication list, please to my [CV](../images/CV_20240403.pdf){:target="_blank"}.
+I have pubslihed 7 first-authored journal papers and 8 first-authored conference papers. Here are some selected publications. For full publication list, please to my [CV]({{ "/images/CV_20240403.pdf" | relative_url }}){:target="_blank"}.
 †:Joint first-author.
 ## 🚀 Autonomous Driving Optical Networks
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2025</div><img src='images/LLMagent.svg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2025</div><img src='{{ "/images/LLMagent.svg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [First field trial of LLM-powered AI agent for lifecycle management of autonomous driving optical networks](https://arxiv.org/abs/2409.14605)\\
@@ -24,7 +25,7 @@ I have pubslihed 7 first-authored journal papers and 8 first-authored conference
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2024</div><img src='images/autodtwave.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">OFC2024</div><img src='{{ "/images/autodtwave.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Auto-DTWave: Digital Twin-Aided Autonomous Optical Network Operation with Continuous Wavelength Loading](https://ieeexplore.ieee.org/abstract/document/10526934) \\
@@ -36,7 +37,7 @@ I have pubslihed 7 first-authored journal papers and 8 first-authored conference
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Advanced Photonics 2024</div><img src='images/AP_BIF_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Advanced Photonics 2024</div><img src='{{ "/images/AP_BIF_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Digital Twin Modeling and controlling of Optical Power Evolution Enabling Autonomous-driving Optical Networks: A Bayesian Approach](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=Jhntj54AAAAJ&sortby=pubdate&citation_for_view=Jhntj54AAAAJ:hC7cP41nSMkC) \\
@@ -49,7 +50,7 @@ I have pubslihed 7 first-authored journal papers and 8 first-authored conference
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2024 & ECOC2023</div><img src='images/SMOF_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2024 & ECOC2023</div><img src='{{ "/images/SMOF_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [SMOF: Simultaneous Modeling and Optimization Framework for Raman Amplifiers in C+L-band Optical Networks](https://ieeexplore.ieee.org/document/10416326) \\
@@ -62,7 +63,7 @@ I have pubslihed 7 first-authored journal papers and 8 first-authored conference
 </div>
 
 ## 🚀 Digital Twin and Physical Layer Modeling
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JOCN 2023 </div><img src='images/dt_invited_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JOCN 2023 </div><img src='{{ "/images/dt_invited_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Building A Digital Twin for Intelligent Optical Networks [Invited Tutorial]](https://ieeexplore.ieee.org/abstract/document/10187397) \\
@@ -74,7 +75,7 @@ Qunbi Zhuge*†,**Xiaomin Liu**†, Yihao Zhang, Meng Cai, Yichen Liu, Qizhi Qiu
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2022 & ACP2021</div><img src='images/PGNN_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2022 & ACP2021</div><img src='{{ "/images/PGNN_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Fusing Physics to Fiber Nonlinearity Model for Optical Networks Based on Physics-Guided Neural Networks](https://ieeexplore.ieee.org/document/9802856) \\
@@ -87,7 +88,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2022 & ECOC2020</div><img src='images/meta_learning_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT2022 & ECOC2020</div><img src='{{ "/images/meta_learning_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [A Meta-Learning-Assisted Training Framework for Physical Layer Modeling in Optical Networks](https://ieeexplore.ieee.org/abstract/document/9693269) \\
@@ -100,7 +101,7 @@ networks (PGNN).The PGNN-based model is compared with traditional neural network
 </div>
 
 ## 🚀 Network Telemetry
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2021</div><img src='images/telemetry_layer_banner.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">JLT 2021</div><img src='{{ "/images/telemetry_layer_banner.jpg" | relative_url }}' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [A Data-Fusion-Assisted Telemetry Layer for Autonomous Optical Networks [Invited Paper]](https://ieeexplore.ieee.org/abstract/document/9385119) \\

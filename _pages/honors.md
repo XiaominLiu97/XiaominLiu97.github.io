@@ -1,6 +1,7 @@
 ---
+layout: default
 permalink: /honors/
-title: "Honors and Awards"
+title: "Honors"
 excerpt: ""
 author_profile: true
 ---

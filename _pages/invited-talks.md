@@ -1,4 +1,5 @@
 ---
+layout: default
 permalink: /invited-talks/
 title: "Invited Talks"
 excerpt: ""

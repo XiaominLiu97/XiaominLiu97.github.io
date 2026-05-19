@@ -1,4 +1,5 @@
 ---
+layout: default
 permalink: /educations/
 title: "Educations"
 excerpt: ""
