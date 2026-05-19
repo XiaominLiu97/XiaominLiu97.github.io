@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const newsItems = newsList.querySelectorAll('li');
   
-  if (newsItems.length > 8) {
-    for (let i = 8; i < newsItems.length; i++) {
+  if (newsItems.length > 4) {
+    for (let i = 4; i < newsItems.length; i++) {
       newsItems[i].classList.add('news-hidden');
     }
     
@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       expanded = !expanded;
       if (expanded) {
-        for (let i = 8; i < newsItems.length; i++) {
+        for (let i = 4; i < newsItems.length; i++) {
           newsItems[i].classList.remove('news-hidden');
         }
         btn.innerHTML = 'Show Less <span class="toggle-icon">▲</span>';
       } else {
-        for (let i = 8; i < newsItems.length; i++) {
+        for (let i = 4; i < newsItems.length; i++) {
           newsItems[i].classList.add('news-hidden');
         }
         btn.innerHTML = 'Show More <span class="toggle-icon">▼</span>';
