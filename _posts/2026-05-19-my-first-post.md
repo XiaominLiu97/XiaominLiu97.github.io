@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "My First Blog Post"
+title: "AI及AI系统的学习材料汇总"
 date: 2026-05-19
 author: Xiaomin Liu
 categories: [blog]
