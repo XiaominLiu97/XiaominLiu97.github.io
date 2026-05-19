@@ -21,5 +21,5 @@ My CV is also available to download [here]({{ "/images/CV_20240714.pdf" | relati
 
 <span style="color: gray; font-weight: bold;">Note: My SJTU email has expired. Please feel free to reach me via:</span>
 
-- **Email:** xiaomin.liu.candy@gmail.com  
-- **WeChat:** Candy_sagittarius
+<span style="color: gray; font-weight: bold;">- **Email:** xiaomin.liu.candy@gmail.com  
+<span style="color: gray; font-weight: bold;">- **WeChat:** Candy_sagittarius
