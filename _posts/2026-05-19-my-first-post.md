@@ -7,7 +7,7 @@ categories: [blog]
 tags: [welcome]
 ---
 
-# Welcome to My First Blog Post
+# 杂七杂八--AI及AI系统学习材料
 
 - 并行通信（distributed training parallelsim）：https://zhuanlan.zhihu.com/p/655939356
 - 中科大郑烇b站计算机网络 讲了类似alpha-beta计算https://www.bilibili.com/video/BV1JV411t7ow?spm_id_from=333.788.videopod.episodes&vd_source=c007795d296b25971bfa989ca8c1b43e&p=8
