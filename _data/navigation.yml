@@ -18,5 +18,8 @@ main:
   - title: "Invited Talks"
     url: "/invited-talks/"
 
+  - title: "Blog"
+    url: "/blog/"
+
   # - title: "Projects"
   #   url: "/#-projects"
