@@ -19,7 +19,7 @@ My CV is also available to download [here]({{ "/images/CV_20240714.pdf" | relati
 <p style="color: red;"> In Sep. 2025, I joined Huawei as the TopMind scholar (天才少年), working in the research lab of autonomous driving networks (which works on autonomous optical/wireless/computer networks, not cars). </p>
 
 
-**Note:** My SJTU email has expired. Please feel free to reach me via:
+<span style="color: gray; font-weight: bold;">Note: My SJTU email has expired. Please feel free to reach me via:</span>
 
 - **Email:** xiaomin.liu.candy@gmail.com  
 - **WeChat:** Candy_sagittarius
