@@ -6,14 +6,18 @@
 {% endif %}
 {% assign url = gsDataBaseUrl | append: "google-scholar-stats/gs_data_shieldsio.json" %}
 
-I'm a Ph.D. candidate in Information Engineering at the Department of Electronic Engineering (电子系), [Shanghai Jiao Tong University](https://en.sjtu.edu.cn/), Shanghai, China, supervised by Professor [Qunbi Zhuge](https://zhuge.sjtu.edu.cn/). I received my bachelor’s degree in Information Engineering (AI Special Class) from the same department at [Shanghai Jiao Tong University](https://en.sjtu.edu.cn/).  
+I graduated with a Ph.D. in Information Engineering from the Department of Electronic Engineering (电子系), [Shanghai Jiao Tong University](https://en.sjtu.edu.cn/), Shanghai, China, under the supervision of Professor [Qunbi Zhuge](https://zhuge.sjtu.edu.cn/). I received my bachelor’s degree in Information Engineering (AI Special Class) from the same department at [Shanghai Jiao Tong University](https://en.sjtu.edu.cn/).  
 <a href='https://scholar.google.com/citations?user=Jhntj54AAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>
 
 I aspire to be a **knowledgeable AI expert from hardware to software**. My research covers both sides of the AI‑Network loop:
 
-- **AI for Network (AIOps & Agentic O&M)**: Self‑driving optical backbone networks via data‑driven modeling, monitoring, and optimization. Primary domain: long‑haul WDM & multi‑band systems; currently extending to wireless and IP.
+- **AI for Network**:
+    - **AIOps**: Network digital twin, failure management, and network optimization.
+    - **Agentic O&M**: architecture, skill design, and hardware-software co-acceleration. 我实现了OTN网络世界首个agent网络运维现网示范。
+    
+    My doctoral research has primarily applied the above to optical networks (OTN, DCI, DCN), and is currently extending to wireless, IP, and cloud core networks.
 
-- **Network for AI**: Accelerating distributed training via collective communication scheduling (Visiting @Polimi with Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao)) and OCS‑based intelligent computing networks. This spans three scaling dimensions — **scale‑up** (intra‑node/rack interconnects), **scale‑out** (multi‑node distributed training), and **scale‑across** (geo‑distributed / multi‑domain coordination).
+- **Network for AI**: Accelerating distributed training via collective communication scheduling (Visiting @Polimi with Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao)) and OCS‑based intelligent computing networks.
 
 My CV is also available to download [here]({{ "/images/CV_20240714.pdf" | relative_url }}){:target="_blank"}.
 
