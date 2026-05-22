@@ -13,7 +13,7 @@ I aspire to be a **knowledgeable AI expert from hardware to software**. My resea
 
 - **AI for Network**:
     - **AIOps**: Network digital twin, failure management, and network optimization.
-    - **Agentic O&M**: architecture, skill design, and hardware-software co-acceleration. 我实现了OTN网络世界首个agent网络运维现网示范。
+    - **Agentic O&M**: architecture, skill design, and hardware-software co-acceleration.  I lead the world's first demonstration of agentic full-lifecycle O&M for OTN networks.
     
     My doctoral research has primarily applied the above to optical networks (OTN, DCI, DCN), and is currently extending to wireless, IP, and cloud core networks.
 
