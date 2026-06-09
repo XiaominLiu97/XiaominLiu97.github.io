@@ -17,7 +17,7 @@ I aspire to be a **knowledgeable AI expert from hardware to software**. My resea
     
     My dissertation work focused on applying the above to optical networks (OTN, DCI, DCN), and is currently extending to wireless, IP, and cloud core networks.
 
-- **Network for AI**: Accelerating distributed training via collective communication scheduling (Visiting @Polimi with Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao)) and OCS‑based intelligent computing networks.
+- **Network for AI**: Accelerating distributed training via collective communication scheduling (Visiting @Polimi with Prof. [Massimo Tornatore](https://scholar.google.com/citations?user=50-RA6kAAAAJ&hl=zh-CN&oi=ao)) and OCS‑based computing networks.
 
 My CV is also available to download [here]({{ "/images/CV_20240714.pdf" | relative_url }}){:target="_blank"}.
 
