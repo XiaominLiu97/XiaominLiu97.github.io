@@ -1,0 +1,2 @@
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50).
+- Proposed a data-fusion-assisted telemetry layer between the physical layer and control layer. The data fusion methodologies are elaborated at three different levels: source level, space level, and model level.

@@ -1,0 +1,2 @@
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=50), extended from [ECOC 2020](https://www.ecocexhibition.com/conference/).
+- Proposed a meta-learning-assisted training framework for machine-learning-based physical layer models. This framework improves model robustness to agnostic uncertain parameters during offline training and enables the model to efficiently adapt to the real system with fewer data.

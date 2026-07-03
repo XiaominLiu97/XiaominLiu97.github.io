@@ -1,0 +1,19 @@
+{
+  "intro": "I have published 7 first-authored journal papers and 8 first-authored conference papers. Here are some selected publications. For the full publication list, please refer to my [CV]({{ '/images/CV_20240403.pdf' | relative_url }}){:target=\"_blank\"}.",
+  "note": "*: Joint first-author.",
+  "section_order": [
+    "Autonomous Driving Optical Networks",
+    "Digital Twin and Physical Layer Modeling",
+    "Network Telemetry"
+  ],
+  "projects": [
+    "llm-powered-ai-agent",
+    "auto-dtwave",
+    "bayesian-digital-twin",
+    "smof",
+    "digital-twin-tutorial",
+    "physics-guided-neural-network",
+    "meta-learning-physical-layer",
+    "telemetry-layer"
+  ]
+}

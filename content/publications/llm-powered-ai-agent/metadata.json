@@ -1,0 +1,9 @@
+{
+  "section": "Autonomous Driving Optical Networks",
+  "badge": "OFC2025",
+  "title": "First field trial of LLM-powered AI agent for lifecycle management of autonomous driving optical networks",
+  "url": "https://arxiv.org/abs/2409.14605",
+  "authors": "**Xiaomin Liu**, Qizhi Qiu, Yihao Zhang, Yuming Cheng, Lilin Yi, Weisheng Hu, Qunbi Zhuge*",
+  "image": "content/publications/llm-powered-ai-agent/LLMagent.svg",
+  "image_alt": "LLM-powered AI agent for autonomous optical networks"
+}

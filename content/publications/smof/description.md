@@ -1,0 +1,2 @@
+- Accepted by [Journal of Lightwave Technology (JLT)](https://ieeexplore.ieee.org/abstract/document/10416326), extended from [ECOC 2023](https://ieeexplore.ieee.org/abstract/document/10484863).
+- Proposed a simultaneous modeling and optimization framework (SMOF) to model and optimize the gain profile of an RA in a data-efficient manner.

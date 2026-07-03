@@ -1,0 +1,2 @@
+- Accepted by [Journal of Optical Communication and Networking (JOCN)](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4563700).
+- Introduced and discussed three key technologies, including modeling, telemetry, and self-learning, to build a DT for optical networks.

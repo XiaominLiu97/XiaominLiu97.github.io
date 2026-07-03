@@ -1,0 +1,2 @@
+- Accepted by [Advanced Photonics](https://www.researching.cn/ap) (IF = 20.6).
+- Proposed a Bayesian inference framework (BIF) to construct the digital twin of OAs and control OPE in a data-efficient manner. Only informative data are collected to balance exploration and exploitation, enabling efficient autonomous-driving optical networks (ADONs).

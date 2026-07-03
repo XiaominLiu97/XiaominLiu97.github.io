@@ -1,0 +1,2 @@
+- Accepted by [Optical Fiber Communication Conference (OFC) 2024](https://www.ofcconference.org/zh-cn/home/)
+- Developed joint online digital twin (DT) construction and amplifier configuration with continuous wavelength loading in a commercial testbed. The DT achieves an RMSE of 0.37 dB, assisting near-optimal amplifier configuration with less than 0.1 dB average Q-factor deviation.

@@ -1,0 +1,4 @@
+- Accepted by [Optical Fiber Communication Conference (OFC) 2025](https://www.ofcconference.org/)
+- Built the world's first field trial demonstration of the LLM-powered AI agent for the network lifecycle.
+- Supported diverse network events, including wavelength add/drop, failure management, and power optimization.
+- Showed the potential of LLMs to control and manage autonomous optical networks.
