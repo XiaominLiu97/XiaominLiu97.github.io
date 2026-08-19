@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstraSim 学习指南 — 从零跑通分布式 AI 系统模拟器</title>
+<style>
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --ink:#1e293b; --muted:#64748b;
+  --line:#e2e8f0; --brand:#1d4ed8; --brand-soft:#dbeafe;
+  --code-bg:#0f172a; --code-ink:#e2e8f0;
+  --green:#059669; --blue:#2563eb; --purple:#7c3aed; --orange:#d97706;
+  --ok:#16a34a; --warn:#d97706; --err:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+/* ---------- 顶部导航 ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);color:#e2e8f0}
+nav .wrap{display:flex;align-items:center;gap:18px;height:52px;overflow-x:auto;white-space:nowrap}
+nav .logo{font-weight:700;color:#fff;font-size:15px;flex-shrink:0}
+nav a{color:#cbd5e1;text-decoration:none;font-size:13.5px;padding:4px 2px;flex-shrink:0}
+nav a:hover{color:#fff}
+nav a.active{color:#7dd3fc;border-bottom:2px solid #7dd3fc}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#1d4ed8 100%);color:#fff;padding:64px 0 56px}
+.hero h1{font-size:34px;line-height:1.3;margin-bottom:14px}
+.hero p.sub{font-size:17px;color:#bfdbfe;max-width:760px;margin-bottom:22px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{font-size:13px;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+.badge.g{background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.4)}
+.badge.b{background:rgba(59,130,246,.18);border-color:rgba(59,130,246,.4)}
+.badge.p{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4)}
+.stats{display:flex;gap:26px;margin-top:28px;flex-wrap:wrap}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:13px;color:#93c5fd}
+
+/* ---------- 章节 ---------- */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-num{display:inline-block;font-size:12.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:6px;padding:3px 10px;margin-bottom:10px}
+h2{font-size:26px;margin-bottom:8px}
+h3{font-size:19px;margin:26px 0 10px;color:#0f172a}
+p{margin:10px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin:16px 0;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.lead{color:var(--muted);font-size:16px}
+em{font-style:normal;background:#fef3c7;padding:0 5px;border-radius:4px;color:#92400e}
+
+/* ---------- 代码块 ---------- */
+pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:16px 18px;overflow-x:auto;font-size:13.5px;line-height:1.65;position:relative;margin:14px 0}
+code{font-family:"Cascadia Code",Consolas,"JetBrains Mono",monospace}
+pre code{white-space:pre}
+.cmd{color:#93c5fd} /* 命令前缀 */
+.comment{color:#64748b}
+.out{color:#86efac}
+.copy{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);color:#cbd5e1;border:1px solid rgba(255,255,255,.2);border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.22)}
+.inline-code{font-family:Consolas,monospace;background:#eef2f7;color:#be185d;border-radius:5px;padding:1px 7px;font-size:14px}
+
+/* ---------- 表格 ---------- */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px;background:#fff;border-radius:10px;overflow:hidden}
+th,td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f1f5f9;font-weight:600;color:#334155}
+tr:last-child td{border-bottom:none}
+
+/* ---------- 架构图 ---------- */
+.layers{display:flex;flex-direction:column;gap:8px;margin:20px 0}
+.layer{border-radius:10px;padding:14px 18px;color:#fff;font-size:14.5px;position:relative}
+.layer .lt{font-weight:700;font-size:15.5px}
+.layer .ld{opacity:.85;font-size:13px;margin-top:2px}
+.l1{background:#0ea5e9}.l2{background:#6366f1}.l3{background:#8b5cf6}.l4{background:#10b981}.l5{background:#f59e0b}
+.arrow-down{text-align:center;color:#94a3b8;font-size:18px;line-height:1}
+
+/* ---------- 时间线 ---------- */
+.tl{position:relative;margin:20px 0 8px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding:10px 0 18px}
+.tl-item::before{content:"";position:absolute;left:-28px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--brand);border:3px solid #fff;box-shadow:0 0 0 2px var(--brand)}
+.tl-item.done::before{background:var(--ok);box-shadow:0 0 0 2px var(--ok)}
+.tl-item h4{font-size:15.5px}
+.tl-item .tld{font-size:14px;color:var(--muted)}
+
+/* ---------- 术语网格 ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:18px 0}
+.term{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.term b{color:var(--brand);font-size:14.5px}
+.term p{font-size:13.5px;color:var(--muted);margin:6px 0 0}
+
+/* ---------- 提示框 ---------- */
+.tip{border-left:4px solid var(--brand);background:#eff6ff;padding:14px 18px;border-radius:8px;margin:16px 0;font-size:14.5px}
+.tip.warn{border-color:var(--warn);background:#fffbeb}
+.tip.ok{border-color:var(--ok);background:#f0fdf4}
+.tip.err{border-color:var(--err);background:#fef2f2}
+.tip b{display:block;margin-bottom:4px}
+
+/* ---------- 管线 ---------- */
+.pipe{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap}
+.pstep{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;font-size:13.5px;position:relative;margin-right:26px}
+.pstep:last-child{margin-right:0}
+.pstep::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:18px}
+.pstep:last-child::after{content:""}
+.pstep b{display:block;color:var(--brand);margin-bottom:4px;font-size:14px}
+
+/* ---------- FAQ ---------- */
+details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:15px;color:#0f172a}
+details p{font-size:14.5px;margin-top:8px;color:#475569}
+
+/* ---------- Footer ---------- */
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;text-align:center;font-size:13.5px}
+footer a{color:#7dd3fc;text-decoration:none}
+
+/* ---------- 目录侧栏提示 ---------- */
+.chnav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+.chnav a{font-size:13px;color:var(--brand);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 14px;text-decoration:none}
+.chnav a:hover{border-color:var(--brand)}
+
+@media (max-width:640px){
+  .hero h1{font-size:26px}
+  h2{font-size:22px}
+  pre{font-size:12.5px}
+}
+/* ---- 轨迹可视化 ---- */
+.vbtn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:13.5px;cursor:pointer;color:var(--ink)}
+.vbtn:hover{border-color:var(--brand);color:var(--brand)}
+.vbtn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.vbtn-primary:hover{color:#fff;background:#1e40af}
+.npu-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:13.5px}
+.npu-head{font-family:Consolas,monospace;font-weight:700;color:#0f172a;font-size:13.5px}
+.npu-meta{color:var(--muted);font-size:12px;margin:2px 0 10px}
+.npu-node{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.npu-type{color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.npu-name{font-family:Consolas,monospace;font-size:12.5px;color:#334155}
+.npu-row{font-size:13px;color:#475569;margin:3px 0}
+.npu-row b{color:#0f172a}
+.npu-attrs{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+.npu-attr{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.npu-attr .ak{color:var(--muted)}
+.npu-attr .av{color:#334155;font-family:Consolas,monospace}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">📡 AstraSim 学习指南</span>
+    <a href="#intro">01 是什么</a>
+    <a href="#concepts">02 核心概念</a>
+    <a href="#setup">03 环境准备</a>
+    <a href="#clone">04 拉取代码</a>
+    <a href="#build">05 构建</a>
+    <a href="#configs">06 配置文件</a>
+    <a href="#run">07 运行</a>
+    <a href="#result">08 解读输出</a>
+    <a href="#faq">09 常见问题</a>
+    <a href="#next">10 下一步</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>AstraSim 学习指南<br>从零跑通分布式 AI 系统模拟器</h1>
+    <p class="sub">面向本科 CS 学生的完整实操教程：AstraSim 是什么、为什么需要它、以及如何在你的电脑上把一次真实的仿真从代码拉取跑到输出结果——全部基于一次真实安装过程整理。</p>
+    <div class="badges">
+      <span class="badge">⚡ analytical 后端 ✅</span>
+      <span class="badge b">🌐 htsim 后端 ✅</span>
+      <span class="badge p">🧪 ns-3 后端 ✅</span>
+      <span class="badge">🐧 Windows + WSL2</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3</b><span>网络后端全部跑通</span></div>
+      <div class="stat"><b>22240</b><span>analytical 示例仿真周期</span></div>
+      <div class="stat"><b>7</b><span>Git 子模块</span></div>
+      <div class="stat"><b>1.8 GB</b><span>仓库 + 构建产物</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 01 ================= -->
+<section id="intro">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 01</span>
+    <h2>AstraSim 是什么？为什么需要它？</h2>
+    <p class="lead">一句话：<b>AstraSim</b>（ASTRA-sim 2.0）是一个<b>分布式 AI 系统模拟器</b>，用来回答一个问题——<em>"如果我用 XX 张 GPU、YY 网络拓扑、ZZ 集合通信算法训练一个大模型，到底要跑多久？"</em>——而不需要真的买硬件。</p>
+
+    <div class="card">
+      <h3>为什么大模型训练离不开"模拟"？</h3>
+      <p>现代大模型（如 GPT、Llama）的单卡显存放不下，必须把模型<b>切分</b>到成百上千张 GPU 上并行训练。这时<b>通信开销</b>（GPU 之间传数据）往往比计算更慢，成为性能瓶颈。而通信的时间取决于：</p>
+      <table>
+        <tr><th>因素</th><th>举例</th></tr>
+        <tr><td>硬件</td><td>单卡算力、NVLink/IB 网络带宽与延迟</td></tr>
+        <tr><td>拓扑</td><td>环(Ring)、2D-Torus、Fat-Tree、Clos 等互联结构</td></tr>
+        <tr><td>算法</td><td>AllReduce 用 Ring / Tree / 分层实现，通信量不同</td></tr>
+        <tr><td>负载</td><td>训练脚本产生的通信模式（算子执行轨迹）</td></tr>
+      </table>
+      <p>想在买硬件之前就评估这些组合的性能？物理实验太贵太慢，于是有了 <b>模拟器</b>：把上述因素抽象成数学模型或事件驱动仿真，在普通电脑上"预演"一次分布式训练。</p>
+    </div>
+
+    <div class="card">
+      <h3>AstraSim 的分层架构（插件式设计）</h3>
+      <p>AstraSim 2.0 把整个模拟栈拆成可插拔的层次，每一层都可以换实现——这是它最大的设计亮点：</p>
+      <div class="layers">
+        <div class="layer l1"><div class="lt">① Workload 层（工作负载）</div><div class="ld">输入：MLCommons Chakra 执行轨迹（.et 文件），描述每个 NPU 上算子与通信事件的时序</div></div>
+        <div class="arrow-down">↓</div>
+        <div class="layer l2"><div class="lt">② 系统层（AstraSim 内核）</div><div class="ld">调度策略、集合通信算法（Ring/Tree...）、逻辑拓扑、内存模型</div></div>
+        <div class="arrow-down">↓</div>
+        <div class="layer l3"><div class="lt">③ 网络前端（API）</div><div class="ld">统一的网络接口：sim_send / sim_recv，屏蔽后端差异</div></div>
+        <div class="arrow-down">↓</div>
+        <div class="layer l4"><div class="lt">④ 网络后端（Network Backend）</div><div class="ld">可选实现：analytical（公式计算）｜ htsim（包级离散事件）｜ ns-3（全协议栈仿真）</div></div>
+        <div class="arrow-down">↓</div>
+        <div class="layer l5"><div class="lt">⑤ 输出</div><div class="ld">每个 NPU 的完成周期数（Wall time / Comm time）、CSV 统计等</div></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--muted)">模拟器本身不是"模型"，而是一个可组合的框架——你换一个后端，就换了一种仿真保真度；换一份轨迹，就换了一个训练负载。</p>
+    </div>
+
+    <div class="tip ok"><b>✅ 本教程的路线</b>我们将走完 01→05 的完整链路：拉代码 → 装环境 → 编译 → 用三种后端各跑一个示例 → 解读结果。你最终得到的是 3 个可执行文件和 3 组真实仿真数据。</div>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section id="concepts">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 02</span>
+    <h2>核心概念速览（先认识这些词）</h2>
+    <p class="lead">下面这些术语会反复出现在命令、配置和日志里，先混个脸熟。</p>
+
+    <div class="grid">
+      <div class="term"><b>Chakra Execution Trace（.et）</b><p>工作负载的输入格式。一个 .et 文件记录一个 NPU 上按时间排列的算子事件（计算/通信/空闲）。AstraSim 读取它来驱动仿真。</p></div>
+      <div class="term"><b>Collective 通信</b><p>多卡协同的通信原语：AllReduce（规约再广播）、AllGather（各卡汇总）、ReduceScatter（分散规约）、AllToAll（全交换）。训练中占比极高。</p></div>
+      <div class="term"><b>Ring（环形）拓扑</b><p>把 N 个节点串成环，数据沿环传递。示例配置里的 Ring_4npus = 4 个 NPU 组成环。</p></div>
+      <div class="term"><b>congestion aware / unaware</b><p>是否考虑网络拥塞。unaware 用排队论公式快速估算；aware 追踪链路占用，更准但更慢。对应两个可执行文件。</p></div>
+      <div class="term"><b>Workload / System / Network 配置</b><p>运行时的 3 类输入：workload（轨迹前缀）、system（调度与内存参数 json）、network（带宽/延迟/拓扑 yml）。</p></div>
+      <div class="term"><b>NPU / 节点</b><p>模拟的单位计算设备（GPU 的抽象）。示例里有 4、8、16 NPU 的配置。</p></div>
+    </div>
+
+    <h3>三个网络后端怎么选？</h3>
+    <table>
+      <tr><th></th><th>analytical</th><th>htsim</th><th>ns-3</th></tr>
+      <tr><td><b>原理</b></td><td>数学公式近似（无拥塞模型）</td><td>包级离散事件模拟（拥塞感知）</td><td>完整网络协议栈仿真（最精确）</td></tr>
+      <tr><td><b>速度</b></td><td>⚡ 极快（秒级）</td><td>🕐 中等</td><td>🐢 慢（分钟~小时）</td></tr>
+      <tr><td><b>保真度</b></td><td>低（适合快速对比算法）</td><td>中</td><td>高（研究网络细节）</td></tr>
+      <tr><td><b>构建难度</b></td><td>简单（纯 CMake）</td><td>中等（需 patch 第三方库）</td><td>较复杂（ns-3 本体庞大）</td></tr>
+      <tr><td><b>产物</b></td><td>AstraSim_Analytical_*</td><td>AstraSim_HTSim</td><td>ns3.42-AstraSimNetwork</td></tr>
+      <tr><td><b>我们的实测</b></td><td>4 NPU 仿真 0.1 秒</td><td>8 NPU 约数秒</td><td>16 NPU 约 1 分钟</td></tr>
+    </table>
+    <p class="lead">学习建议：<b>先 analytical 跑通理解流程，再用 ns-3 感受真实网络仿真</b>。</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section id="setup">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 03</span>
+    <h2>环境准备：为什么是 Linux？</h2>
+    <p class="lead">AstraSim 官方只支持 Linux / Docker。我们在 Windows 上选择了 <b>WSL2（Windows 自带 Linux 子系统）</b>——无需买服务器、无需装双系统。</p>
+
+    <div class="card">
+      <h3>需要装什么？</h3>
+      <table>
+        <tr><th>工具</th><th>用途</th><th>Ubuntu 包名</th></tr>
+        <tr><td>g++ / build-essential</td><td>C++ 编译器（AstraSim 是 C++17 项目）</td><td>build-essential</td></tr>
+        <tr><td>cmake</td><td>构建系统</td><td>cmake</td></tr>
+        <tr><td>protobuf</td><td>Chakra 轨迹的序列化协议（编译 .proto 文件）</td><td>protobuf-compiler libprotobuf-dev</td></tr>
+        <tr><td>python3</td><td>工具脚本 / ns-3 构建脚本</td><td>python3</td></tr>
+        <tr><td>git</td><td>拉取代码</td><td>git</td></tr>
+        <tr><td>OpenMPI（仅 ns-3）</td><td>ns-3 并行仿真支持</td><td>libopenmpi-dev openmpi-bin</td></tr>
+      </table>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button># WSL 中执行（需管理员权限安装 WSL 本体）
+<span class="cmd">$</span> wsl --install -d Ubuntu-22.04
+
+# 进入 Ubuntu 后，安装工具链
+<span class="cmd">$</span> sudo apt update
+<span class="cmd">$</span> sudo apt install -y build-essential cmake ninja-build \
+    protobuf-compiler libprotobuf-dev python3 python3-pip git \
+    libopenmpi-dev openmpi-bin</pre>
+    </div>
+
+    <div class="tip"><b>💡 为什么需要 protobuf？</b>Chakra 轨迹（.et）是二进制文件，格式由 <span class="inline-code">et_def.proto</span> 定义。构建前要用 <span class="inline-code">protoc</span> 把它编译成 C++ 代码（et_def.pb.cc/h），AstraSim 才能读写轨迹。</div>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section id="clone">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 04</span>
+    <h2>拉取代码：git clone + 子模块</h2>
+    <p class="lead">AstraSim 不是一个单仓库，而是 <b>1 个主仓库 + 7 个 Git 子模块</b>。子模块就是"仓库里的仓库"，指向各自独立维护的库（Chakra、fmt、spdlog、ns-3 等）。</p>
+
+    <div class="card">
+      <h3>第一步：克隆主仓库</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> git clone https://github.com/astra-sim/astra-sim.git
+<span class="cmd">$</span> cd astra-sim</pre>
+      <h3>第二步：初始化全部子模块</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> git submodule update --init --recursive</pre>
+      <p style="font-size:13.5px;color:var(--muted)">--recursive 表示子模块里的子模块也一起拉（嵌套）。这一步会下载 ns-3（约 170MB），耐心等待。</p>
+    </div>
+
+    <div class="tip warn"><b>🌐 中国大陆网络访问 GitHub 超时怎么办？</b>GitHub 直连经常失败，可以用代理前缀改写地址（本教程实测可用）：
+<pre style="margin:10px 0 0"><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> git clone https://ghfast.top/https://github.com/astra-sim/astra-sim.git
+<span class="cmd">$</span> cd astra-sim
+<span class="cmd">$</span> git -c 'url.https://ghfast.top/https://github.com/.insteadOf=https://github.com/' \
+    submodule update --init --recursive</pre></div>
+
+    <h3>仓库里有什么？</h3>
+    <table>
+      <tr><th>目录</th><th>内容</th></tr>
+      <tr><td><span class="inline-code">astra-sim/</span></td><td>模拟器核心源码（system / workload / network_frontend）</td></tr>
+      <tr><td><span class="inline-code">build/</span></td><td>各后端的构建脚本（astra_analytical / astra_htsim / astra_ns3）</td></tr>
+      <tr><td><span class="inline-code">examples/</span></td><td>示例配置：workload（轨迹）、system（json）、network（yml）、run_scripts</td></tr>
+      <tr><td><span class="inline-code">extern/</span></td><td>子模块：chakra、fmt、spdlog、analytical 后端、ns-3、csg-htsim</td></tr>
+      <tr><td><span class="inline-code">inputs/</span></td><td>额外输入配置（如真实硬件 H100 参数）</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section id="build">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 05</span>
+    <h2>构建：从源码到可执行文件</h2>
+    <p class="lead">以 analytical 后端为例，构建本质是 3 步：<b>protoc 编译 proto → cmake 配置 → make 编译链接</b>。</p>
+
+    <div class="pipe">
+      <div class="pstep"><b>1. protoc</b>et_def.proto → et_def.pb.cc/.h</div>
+      <div class="pstep"><b>2. cmake ..</b>检测依赖、生成 Makefile</div>
+      <div class="pstep"><b>3. make -j</b>编译 C++ → 链接出可执行文件</div>
+    </div>
+
+    <div class="card">
+      <h3>官方构建脚本（推荐）</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> cd build/astra_analytical
+<span class="cmd">$</span> ./build.sh -t all   # 同时构建 congestion_unaware 和 congestion_aware</pre>
+      <p>等价的手动命令（理解原理用）：</p>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button># ① 编译 Chakra proto
+<span class="cmd">$</span> protoc et_def.proto --proto_path=extern/graph_frontend/chakra/schema/protobuf \
+    --cpp_out=extern/graph_frontend/chakra/schema/protobuf
+
+# ② cmake 配置 + ③ 编译
+<span class="cmd">$</span> mkdir -p build/astra_analytical/build && cd build/astra_analytical/build
+<span class="cmd">$</span> cmake .. -DBUILDTARGET=congestion_unaware
+<span class="cmd">$</span> make -j$(nproc)</pre>
+    </div>
+
+    <h3>三个后端的构建</h3>
+    <table>
+      <tr><th>后端</th><th>命令</th><th>产物位置</th></tr>
+      <tr><td>analytical</td><td><span class="inline-code">build/astra_analytical/build.sh -t all</span></td><td>build/astra_analytical/build/bin/</td></tr>
+      <tr><td>htsim</td><td><span class="inline-code">build/astra_htsim/build.sh</span>（自动给 csg-htsim 打补丁）</td><td>build/astra_htsim/build/bin/</td></tr>
+      <tr><td>ns-3</td><td><span class="inline-code">build/astra_ns3/build.sh -c</span>（编译整个 ns-3，最慢）</td><td>extern/network_backend/ns-3/build/scratch/</td></tr>
+    </table>
+    <div class="tip"><b>⏱ 编译时间参考</b>i7-12700（20 线程）实测：analytical 约 4 分钟，htsim 约 5 分钟，ns-3 约 20~40 分钟。</div>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section id="configs">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 06</span>
+    <h2>认识配置文件：点开看看真实内容</h2>
+    <p class="lead">AstraSim 的输入是三种格式的文件。这一章把仓库里的 <b>6 个真实配置文件</b> 全部嵌入网页——<b>点开即可查看完整内容</b>，每个字段都有中文注释。这些文件也真实存在于你的 <span class="inline-code">D:\astrasim\examples\</span> 目录下，可用 VSCode / 记事本直接打开。</p>
+    <div class="grid">
+      <div class="term"><b>YAML（.yml）</b><p>键值对 + 缩进层级，<span class="inline-code">key: value</span>，<span class="inline-code">#</span> 开头是注释，没有大括号。用于网络配置。</p></div>
+      <div class="term"><b>JSON（.json）</b><p>花括号 <span class="inline-code">{ }</span> 包对象，键和字符串都要双引号，<span class="inline-code">[ ]</span> 是数组。用于系统 / 内存 / 拓扑配置。</p></div>
+      <div class="term"><b>Chakra 轨迹（.et）</b><p>二进制 protobuf，记录每个 NPU 的算子事件。文本编辑器打开是乱码，要用 Python 读取（见下方脚本）。</p></div>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/network/analytical/Ring_4npus.yml</span> <span class="badge">YAML</span></h3>
+      <p class="lead" style="margin-top:6px">最简网络配置：4 个 NPU 组成环形（Ring），每条链路 50 GB/s、500 ns 延迟。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>topology: [ Ring ]
+npus_count: [ 4 ]
+bandwidth: [ 50.0 ]  # GB/s
+latency: [ 500.0 ]  # ns</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>topology</b></td><td>逻辑拓扑类型：节点怎么连</td><td><span class="inline-code">[ Ring ]</span></td></tr>
+        <tr><td><b>npus_count</b></td><td>参与仿真的 NPU（GPU）个数</td><td><span class="inline-code">[ 4 ]</span></td></tr>
+        <tr><td><b>bandwidth</b></td><td>链路带宽，单位 GB/s</td><td><span class="inline-code">[ 50.0 ]</span></td></tr>
+        <tr><td><b>latency</b></td><td>链路延迟，单位 ns（纳秒）</td><td><span class="inline-code">[ 500.0 ]</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/network/analytical/HGX-H100-validated.yml</span> <span class="badge">YAML</span></h3>
+      <p class="lead" style="margin-top:6px">真实硬件配置：NVIDIA H100 8 卡服务器（官方实测校准参数），交换机直连拓扑。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>topology: [ Switch ]
+npus_count: [ 8 ]
+bandwidth: [ 400.0 ]  # GB/s
+latency: [ 936.25 ]  # ns</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>topology</b></td><td>拓扑类型</td><td><span class="inline-code">[ Switch ]</span></td></tr>
+        <tr><td><b>npus_count</b></td><td>NPU 数量</td><td><span class="inline-code">[ 8 ]</span></td></tr>
+        <tr><td><b>bandwidth</b></td><td>NVLink 带宽（GB/s）</td><td><span class="inline-code">[ 400.0 ]</span></td></tr>
+        <tr><td><b>latency</b></td><td>链路延迟（ns）</td><td><span class="inline-code">[ 936.25 ]</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/system/native_collectives/Ring_4chunks.json</span> <span class="badge">JSON</span></h3>
+      <p class="lead" style="margin-top:6px">系统配置（最值得研究）：决定调度策略、集合通信用什么算法、内存带宽等。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>{
+    "scheduling-policy": "LIFO",
+    "endpoint-delay": 10,
+    "active-chunks-per-dimension": 1,
+    "preferred-dataset-splits": 4,
+    "all-reduce-implementation": [
+        "ring"
+    ],
+    "all-gather-implementation": [
+        "ring"
+    ],
+    "reduce-scatter-implementation": [
+        "ring"
+    ],
+    "all-to-all-implementation": [
+        "ring"
+    ],
+    "collective-optimization": "localBWAware",
+    "local-mem-bw": 1600,
+    "boost-mode": 0,
+    "roofline-enabled": 0,
+    "peak-perf": 900
+}</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>scheduling-policy</b></td><td>算子调度顺序</td><td><span class="inline-code">"LIFO"</span></td></tr>
+        <tr><td><b>endpoint-delay</b></td><td>端点（网卡侧）处理延迟（ns）</td><td><span class="inline-code">10</span></td></tr>
+        <tr><td><b>active-chunks-per-dimension</b></td><td>每个维度同时传输的数据块数</td><td><span class="inline-code">1</span></td></tr>
+        <tr><td><b>preferred-dataset-splits</b></td><td>训练数据切分份数</td><td><span class="inline-code">4</span></td></tr>
+        <tr><td><b>all-reduce-implementation</b></td><td>AllReduce 用哪个算法实现</td><td><span class="inline-code">["ring"]</span></td></tr>
+        <tr><td><b>all-gather-implementation</b></td><td>AllGather 算法</td><td><span class="inline-code">["ring"]</span></td></tr>
+        <tr><td><b>reduce-scatter-implementation</b></td><td>ReduceScatter 算法</td><td><span class="inline-code">["ring"]</span></td></tr>
+        <tr><td><b>all-to-all-implementation</b></td><td>AllToAll 算法</td><td><span class="inline-code">["ring"]</span></td></tr>
+        <tr><td><b>collective-optimization</b></td><td>集合通信优化策略</td><td><span class="inline-code">"localBWAware"</span></td></tr>
+        <tr><td><b>local-mem-bw</b></td><td>本地显存带宽（GB/s）</td><td><span class="inline-code">1600</span></td></tr>
+        <tr><td><b>boost-mode</b></td><td>加速模式（0=关闭）</td><td><span class="inline-code">0</span></td></tr>
+        <tr><td><b>roofline-enabled</b></td><td>是否启用 Roofline 计算模型</td><td><span class="inline-code">0</span></td></tr>
+        <tr><td><b>peak-perf</b></td><td>单卡峰值算力（TFLOPS）</td><td><span class="inline-code">900</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/system/native_collectives/HGX-H100-validated.json</span> <span class="badge">JSON</span></h3>
+      <p class="lead" style="margin-top:6px">H100 实测版系统配置：与上面结构相同，只改了和真实硬件相关的参数。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>{
+    "scheduling-policy": "LIFO",
+    "endpoint-delay": 10,
+    "active-chunks-per-dimension": 2,
+    "preferred-dataset-splits": 4,
+    "all-reduce-implementation": [
+        "ring"
+    ],
+    "all-gather-implementation": [
+        "ring"
+    ],
+    "reduce-scatter-implementation": [
+        "ring"
+    ],
+    "all-to-all-implementation": [
+        "ring"
+    ],
+    "collective-optimization": "localBWAware",
+    "local-mem-bw": 3350,
+    "boost-mode": 0
+}</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>active-chunks-per-dimension</b></td><td>同时传输的数据块数（更大=更激进）</td><td><span class="inline-code">2</span></td></tr>
+        <tr><td><b>local-mem-bw</b></td><td>H100 显存带宽（GB/s）</td><td><span class="inline-code">3350</span></td></tr>
+        <tr><td><b>（无 roofline / peak-perf）</b></td><td>不写这两个字段 = 不启用计算模型</td><td><span class="inline-code">—</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/remote_memory/analytical/no_memory_expansion.json</span> <span class="badge">JSON</span></h3>
+      <p class="lead" style="margin-top:6px">远端内存配置：声明不扩展内存——只用本地显存，模拟最朴素的情况。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>{
+    "memory-type": "NO_MEMORY_EXPANSION"
+}</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>memory-type</b></td><td>内存扩展模式</td><td><span class="inline-code">"NO_MEMORY_EXPANSION"</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">📄 <span class="inline-code">examples/network/ns3/sample_16nodes_1D.json</span> <span class="badge">JSON</span></h3>
+      <p class="lead" style="margin-top:6px">逻辑拓扑配置（ns-3 后端专用）：告诉模拟器从物理网络里取哪 16 个节点、排成什么逻辑形状。</p>
+      <details>
+        <summary>▶ 点击展开，查看完整文件内容</summary>
+        <pre><button class="copy" onclick="copyCode(this)">复制</button>{
+    "logical-dims": ["16"]
+}</pre>
+      </details>
+      <h4 style="margin:14px 0 6px;font-size:15px;color:#0f172a">字段解释</h4>
+      <table><tr><th style="width:28%">字段</th><th style="width:38%">含义</th><th>示例值</th></tr>
+<tr><td><b>logical-dims</b></td><td>逻辑拓扑各维大小（1D=一排）</td><td><span class="inline-code">["16"]</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>🎞 .et 轨迹文件怎么"点开看"？</h3>
+      <p class="lead">.et 是二进制 protobuf 格式，记事本打开是乱码。用下面这段 Python 就能读出每个 NPU 上的算子事件（构建时已生成 et_def_pb2.py）：</p>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button># ① 生成 protobuf 的 Python 代码（构建流程里已自动做过）：
+#    protoc et_def.proto --proto_path=extern/graph_frontend/chakra/schema/protobuf \
+#        --python_out=extern/graph_frontend/chakra/schema/protobuf
+
+import sys
+sys.path.insert(0, "extern/graph_frontend/chakra/schema/protobuf")
+import et_def_pb2 as et
+
+trace = et.ExecutionTrace()
+with open("examples/workload/microbenchmarks/all_reduce/4npus_1MB/all_reduce.0.et", "rb") as f:
+    trace.ParseFromString(f.read())
+
+print("NPU id:", trace.id)
+print("事件总数:", len(trace.events))
+for ev in list(trace.events)[:8]:
+    print(ev.type, "|", ev.name, "|", ev.attr)</pre>
+      <div class="tip"><b>💡 读出来的事件长什么样</b>每个事件是一条"算子记录"：类型（计算 COMPUTE / 通信 COMM_COLLECTIVE / 空闲 IDLE）、名字（如 all_reduce、matmul）、以及大小等属性。AstraSim 就是按这个时间线驱动仿真的。</div>
+    </div>
+
+        <div class="card" id="vis-card">
+      <h3>🎬 轨迹可视化（真实 .et 数据）</h3>
+      <p class="lead">下面的内容不是示意图，而是从你仓库里 <span class="inline-code">examples/workload/microbenchmarks/</span> 的 <b>16 个真实 .et 文件</b>解析出来的（每个文件对应一个 NPU）。可以看到：<b>微基准轨迹 = 每个文件只有 1 个抽象通信节点</b>，具体的"怎么传、传几轮"由 AstraSim 在运行时结合系统/网络配置展开。</p>
+
+      <h4 style="margin-top:8px">① 切换 workload，查看各 NPU 轨迹文件的内容</h4>
+      <div id="wl-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0"></div>
+      <div id="npu-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0"></div>
+
+      <h4 style="margin-top:22px">② 这个 1MB 的 AllReduce 在 4 卡 Ring 上是怎么跑的？（动画）</h4>
+      <p style="font-size:14px;color:var(--muted)">Ring AllReduce 分两阶段：<b>Reduce-Scatter</b>（数据沿环规约求和，3 步）→ <b>All-Gather</b>（结果沿环广播，3 步）。每步每个 NPU 只和邻居传 1 个 chunk（256 KB）。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-top:8px">
+        <svg id="ring-svg" width="340" height="300" viewBox="0 0 340 300" style="background:#f8fafc;border:1px solid var(--line);border-radius:12px;flex-shrink:0"></svg>
+        <div style="flex:1;min-width:260px">
+          <div id="ring-info" style="font-size:14.5px;min-height:84px"></div>
+          <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap">
+            <button id="btn-prev" class="vbtn">⏮ 上一步</button>
+            <button id="btn-play" class="vbtn vbtn-primary">▶ 播放</button>
+            <button id="btn-next" class="vbtn">下一步 ⏭</button>
+            <button id="btn-reset" class="vbtn">↺ 重置</button>
+          </div>
+          <div id="ring-progress" style="font-size:13px;color:var(--muted)"></div>
+          <div class="tip" style="margin-top:12px"><b>💡 看懂这张图</b>节点 0→1→2→3→0 围成一环。每条橙色箭头表示"把某一块数据发给邻居"。6 步之后，4 个 NPU 各持有一份完整的规约结果——这就是 AllReduce 的语义：<b>每张卡都拿到全局结果</b>。</div>
+        </div>
+      </div>
+    </div>
+
+<div class="tip"><b>🤔 思考题</b>这份轨迹只说"做 1MB AllReduce"——那它怎么知道跟哪几个 GPU 做？什么时候开始？答案见 <a href="#faq" style="color:var(--brand)">常见问题 Q7</a>（核心：职责分离）。</div>
+
+    <div class="tip ok"><b>✅ 建议动手做</b>打开 <span class="inline-code">D:\astrasim\examples\system\native_collectives\Ring_4chunks.json</span>，把 <span class="inline-code">all-reduce-implementation</span> 从 <span class="inline-code">"ring"</span> 改成 <span class="inline-code">"tree"</span>，重新跑一次仿真，对比 Wall time——这就是"改配置做实验"的最小闭环。</div>
+  </div>
+</section>
+
+<section id="run">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 07</span>
+    <h2>运行一次仿真</h2>
+    <p class="lead">所有后端都接受同样的 4 个核心参数——这就是"插件式架构"带来的统一接口：</p>
+
+    <div class="card">
+      <table>
+        <tr><th>参数</th><th>含义</th><th>示例值</th></tr>
+        <tr><td><span class="inline-code">--workload-configuration</span></td><td>Chakra 轨迹文件前缀（.et 文件按 NPU 编号）</td><td>examples/workload/.../4npus_1MB/reduce_scatter</td></tr>
+        <tr><td><span class="inline-code">--system-configuration</span></td><td>系统参数：调度策略、集合通信算法、内存带宽</td><td>examples/system/native_collectives/Ring_4chunks.json</td></tr>
+        <tr><td><span class="inline-code">--network-configuration</span></td><td>网络参数：拓扑、NPU 数、带宽、延迟</td><td>examples/network/analytical/Ring_4npus.yml</td></tr>
+        <tr><td><span class="inline-code">--remote-memory-configuration</span></td><td>远端内存模型（训练中参数交换的存储抽象）</td><td>examples/remote_memory/analytical/no_memory_expansion.json</td></tr>
+      </table>
+    </div>
+
+    <h3>真实运行：4 个 NPU 的 ReduceScatter（analytical）</h3>
+    <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> ./build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Unaware \
+    --workload-configuration=examples/workload/microbenchmarks/reduce_scatter/4npus_1MB/reduce_scatter \
+    --system-configuration=examples/system/native_collectives/Ring_4chunks.json \
+    --remote-memory-configuration=examples/remote_memory/analytical/no_memory_expansion.json \
+    --network-configuration=examples/network/analytical/Ring_4npus.yml</pre>
+
+    <p>看到类似下面的输出，就说明仿真跑完了（这是本机真实输出）：</p>
+    <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="out">[info]</span> sys[0] finished, <b>22240</b> cycles, exposed communication 22240 cycles.
+<span class="out">[info]</span> sys[0], Wall time: 22240
+<span class="out">[info]</span> sys[0], Comm time: 22240
+...
+<span class="out">[warning]</span> Exiting</pre>
+
+    <div class="card">
+      <h3>换个后端试试：8 个 NPU 的 AllReduce（htsim）</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> ./build/astra_htsim/build/bin/AstraSim_HTSim \
+    --workload-configuration=examples/workload/microbenchmarks/all_reduce/8npus_1MB/all_reduce \
+    --system-configuration=examples/system/native_collectives/Ring_4chunks.json \
+    --remote-memory-configuration=examples/remote_memory/analytical/no_memory_expansion.json \
+    --network-configuration=examples/network/analytical/Ring_8npus.yml \
+    --htsim_opts -topo examples/network/htsim/8nodes.topo</pre>
+      <h3>再试试 ns-3：16 个 NPU 的 AllGather</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> cd extern/network_backend/ns-3/build/scratch
+<span class="cmd">$</span> ./ns3.42-AstraSimNetwork-default \
+    --workload-configuration=/home/你的用户名/astra-sim/examples/workload/microbenchmarks/all_gather/16npus_1MB/all_gather \
+    --system-configuration=/home/你的用户名/astra-sim/examples/system/native_collectives/Ring_4chunks.json \
+    --network-configuration=/home/你的用户名/astra-sim/extern/network_backend/ns-3/scratch/config/config_clos.txt \
+    --remote-memory-configuration=/home/你的用户名/astra-sim/examples/remote_memory/analytical/no_memory_expansion.json \
+    --logical-topology-configuration=/home/你的用户名/astra-sim/examples/network/ns3/sample_16nodes_1D.json \
+    --comm-group-configuration=empty</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 ================= -->
+<section id="result">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 08</span>
+    <h2>怎么解读输出结果？</h2>
+    <p class="lead">仿真的"时间"以<b>周期（cycle）</b>为单位——一个 cycle 通常对应一个时钟周期（例：1 GHz 时钟下 22240 cycles ≈ 22.24 µs 仿真时间）。</p>
+
+    <div class="card">
+      <h3>关键指标</h3>
+      <table>
+        <tr><th>指标</th><th>含义</th><th>解读</th></tr>
+        <tr><td><b>Wall time</b></td><td>该 NPU 从开始到结束的总时间</td><td>整体性能：越大越慢</td></tr>
+        <tr><td><b>Comm time</b></td><td>其中花在通信上的时间</td><td>通信占比越高，网络越可能是瓶颈</td></tr>
+        <tr><td><b>exposed communication</b></td><td>暴露的通信延迟（计算无法掩盖的部分）</td><td>理想情况下通信应被计算"隐藏"（重叠）</td></tr>
+      </table>
+      <p>本例中 <span class="inline-code">Wall time = Comm time = 22240</span>，说明这是一个<b>纯通信微基准</b>（microbenchmark）——没有计算，所有时间都花在通信上，符合预期。</p>
+    </div>
+
+    <div class="card">
+      <h3>三个后端的结果对比（本机实测）</h3>
+      <table>
+        <tr><th>后端</th><th>示例</th><th>Wall time (cycles)</th><th>说明</th></tr>
+        <tr><td>analytical</td><td>4 NPU ReduceScatter</td><td>22,240</td><td>公式估算，瞬时完成</td></tr>
+        <tr><td>htsim</td><td>8 NPU AllReduce</td><td>1,040,027,218</td><td>包级仿真，时间粒度更细（数量级差异来自建模方式，不代表谁更"对"）</td></tr>
+        <tr><td>ns-3</td><td>16 NPU AllGather</td><td>1,850,320</td><td>完整协议栈仿真</td></tr>
+      </table>
+      <div class="tip"><b>⚠️ 为什么三个后端的数字差这么多？</b>不同后端对"一个 cycle 是什么"和"链路/排队怎么建模"的定义不同，<b>绝对数值不可直接跨后端比较</b>。正确用法是：<em>在同一后端内比较不同配置/算法</em>（如 Ring vs Tree、4 卡 vs 8 卡）。</div>
+    </div>
+
+    <h3>日志怎么看</h3>
+    <p>输出用 spdlog 格式化：<span class="inline-code">[2026-08-17 14:38:26.241] [system::topology::RingTopology] [info] ...</span>。字段依次是：时间戳 → 模块 → 级别（info/warning/error）→ 消息。级别可用环境变量或配置调整。</p>
+  </div>
+</section>
+
+<!-- ================= 08 ================= -->
+<section id="faq">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 09</span>
+    <h2>常见问题（全部来自真实踩坑）</h2>
+
+    <details open>
+      <summary>Q1：git clone GitHub 一直超时 / Failed to connect to github.com</summary>
+      <p>大陆网络访问 GitHub 不稳定。解决办法：① 用镜像前缀 <span class="inline-code">https://ghfast.top/https://github.com/...</span>；② 或配置 git 全局改写规则：<span class="inline-code">git config --global url."https://ghfast.top/https://github.com/".insteadOf "https://github.com/"</span>，之后所有 GitHub 操作自动走镜像（不想要时用 <span class="inline-code">--unset</span> 移除）。</p>
+    </details>
+
+
+    <details>
+      <summary>Q7：all_reduce.0.et 只说"做 1MB AllReduce"——它怎么知道跟哪些 GPU 做？什么时候开始？</summary>
+      <p>这是 AstraSim 最核心的设计：<b>职责分离</b>——轨迹只回答"做什么"，其他问题由配置和模拟器回答：</p>
+      <table>
+        <tr><th>问题</th><th>谁回答</th><th>定义位置</th></tr>
+        <tr><td>做什么？</td><td>.et 轨迹</td><td>comm_type=ALL_REDUCE、comm_size=1MB</td></tr>
+        <tr><td>和谁做？</td><td>网络配置</td><td>npus_count: [4] + comm-group 配置（默认空组 = 全部 NPU）</td></tr>
+        <tr><td>怎么做？</td><td>系统配置</td><td>all-reduce-implementation: ["ring"] 等</td></tr>
+        <tr><td>何时做？</td><td>模拟器</td><td>事件驱动调度：模拟开始即注入无依赖节点，调度策略 LIFO 决定顺序</td></tr>
+      </table>
+      <p>源码依据（Workload.cc extract_comm_group）：空通信组或组 "0" 都对应<b>默认通信组 = 包含所有 rank</b>。microbenchmark 轨迹没有 involved_dim 属性，默认所有维度参与。所以"1MB AllReduce"的范围就是当前仿真里的全部 4 个 NPU——"4"来自 Ring_4npus.yml，不是来自 .et。时间方面：start_time=0 只是占位，真正的开始由模拟 tick 0 注入 + 依赖关系 + 调度策略决定。</p>
+    </details>
+
+    <details>
+      <summary>Q2：ns-3 运行报错 "cannot open flow file: ../../scratch/output/flow.txt"</summary>
+      <p>flow.txt 是 ns-3 的输入文件（描述预定义流量），不在 git 仓库里，需要手动创建。它只需首行一个数字（flow 数量，本教程实测写 0 即可，因为流量由 AstraSim 动态生成）：<span class="inline-code">echo 0 &gt; extern/network_backend/ns-3/scratch/output/flow.txt</span></p>
+    </details>
+
+    <details>
+      <summary>Q3：能在原生 Windows 上构建吗？</summary>
+      <p>可以（用 MinGW/MSYS2），但需要打几个兼容补丁（lockf → _locking、cxxopts 补 cstdint、链接静态 absl 等），且 ns-3 后端无法在 Windows 原生构建。<b>强烈建议用 WSL2</b>：一条命令装好，全后端无补丁跑通。</p>
+    </details>
+
+    <details>
+      <summary>Q4：编译很慢 / 内存不够怎么办？</summary>
+      <p>用 <span class="inline-code">make -j$(nproc)</span> 或减少并行度 <span class="inline-code">make -j4</span>。ns-3 编译建议至少 4 核 8G 内存。编译产物占用约 1.8 GB，注意磁盘空间。</p>
+    </details>
+
+    <details>
+      <summary>Q5：改了 examples 里的 yml/json 后没生效？</summary>
+      <p>检查路径是否写对（相对路径基于运行命令时所在的目录），以及文件格式。analytical 的 network 配置是 YAML（<span class="inline-code">bandwidth/latency</span>），system 配置是 JSON（<span class="inline-code">all-reduce-implementation</span> 等）。</p>
+    </details>
+
+    <details>
+      <summary>Q6：protobuf 版本报错 / 找不到 libprotobuf</summary>
+      <p>Ubuntu 22.04 自带 protobuf 3.12 可用。若需要新版，可用 <span class="inline-code">apt install protobuf-compiler libprotobuf-dev</span> 确认版本：<span class="inline-code">protoc --version</span>。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ================= 09 ================= -->
+<section id="next">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 10</span>
+    <h2>下一步：怎么继续学？</h2>
+    <div class="card">
+      <h3>动手实验清单（由易到难）</h3>
+      <div class="tl">
+        <div class="tl-item done"><h4>✅ 跑通一个示例</h4><div class="tld">已完成：4-NPU ReduceScatter 跑出 22240 cycles</div></div>
+        <div class="tl-item"><h4>① 换 workload：all_reduce / all_gather / all_to_all</h4><div class="tld">改 --workload-configuration 指向不同 microbenchmark，对比 Wall time 差异</div></div>
+        <div class="tl-item"><h4>② 换规模：4 → 8 → 16 NPU</h4><div class="tld">对比 scaling 行为：NPU 翻倍，通信时间怎么变？</div></div>
+        <div class="tl-item"><h4>③ 换拓扑：Ring vs 2D-Torus</h4><div class="tld">修改 network 配置和 logical topology 文件</div></div>
+        <div class="tl-item"><h4>④ 换集合通信算法：Ring vs Tree（system json 里改 all-reduce-implementation）</h4><div class="tld">观察算法对性能的影响</div></div>
+        <div class="tl-item"><h4>⑤ 生成自己的 workload：用 examples/workload/microbenchmarks/generator_scripts/ 里的 Python 脚本生成 .et 轨迹</h4><div class="tld">真正理解"轨迹"是如何描述一次训练的</div></div>
+      </div>
+    </div>
+
+    <h3>官方资源</h3>
+    <table>
+      <tr><th>资源</th><th>地址 / 内容</th></tr>
+      <tr><td>官网</td><td>https://astra-sim.github.io/</td></tr>
+      <tr><td>Wiki / 文档</td><td>https://astra-sim.github.io/astra-sim-docs/ （安装、配置、API 详解）</td></tr>
+      <tr><td>GitHub</td><td>https://github.com/astra-sim/astra-sim</td></tr>
+      <tr><td>Chakra 轨迹格式</td><td>https://github.com/mlcommons/chakra</td></tr>
+      <tr><td>论文</td><td>ASTRA-sim: Enabling SW/HW Co-Design Exploration...（HPCA 2020）；ASTRA-sim 2.0（arXiv 2025）</td></tr>
+    </table>
+    <div class="tip ok"><b>🏁 学习目标达成标志</b>你能不看文档回答：① 一个仿真需要哪 4 类输入？② 三个后端各自在模拟什么层面？③ Wall time 与 Comm time 的区别？④ 如何让一次仿真的时间减半（从配置层面）？</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    AstraSim 学习指南 · 基于一次真实安装过程整理（Windows + WSL2 + Ubuntu 22.04）<br>🔬 进阶实验：<a href="teccl.html">TE-CCL × AstraSim 论文算法仿真验证</a><br>
+    想跑更大的实验？参考 <a href="https://www.aliyun.com/product/swas" target="_blank" rel="noopener">阿里云轻量服务器</a> 或继续在本地 WSL 中探索。
+  </div>
+</footer>
+
+<script>
+function copyCode(btn){
+  var pre = btn.parentElement;
+  var text = pre.innerText.replace(/^复制
+/, "");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent = "已复制 ✓";
+      setTimeout(function(){ btn.textContent = "复制"; }, 1500);
+    }, function(){ fallbackCopy(pre, btn); });
+  } else { fallbackCopy(pre, btn); }
+}
+function fallbackCopy(pre, btn){
+  var range = document.createRange();

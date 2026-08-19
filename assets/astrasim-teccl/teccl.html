@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TE-CCL × AstraSim — 论文算法仿真验证实验</title>
+<style>
+:root{
+  --bg:#f6f8fb; --card:#ffffff; --ink:#1e293b; --muted:#64748b;
+  --line:#e2e8f0; --brand:#1d4ed8; --brand-soft:#dbeafe;
+  --code-bg:#0f172a; --code-ink:#e2e8f0;
+  --green:#059669; --blue:#2563eb; --purple:#7c3aed; --orange:#d97706;
+  --ok:#16a34a; --warn:#d97706; --err:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.92);backdrop-filter:blur(8px);color:#e2e8f0}
+nav .wrap{display:flex;align-items:center;gap:18px;height:52px;overflow-x:auto;white-space:nowrap}
+nav .logo{font-weight:700;color:#fff;font-size:15px;flex-shrink:0}
+nav a{color:#cbd5e1;text-decoration:none;font-size:13.5px;padding:4px 2px;flex-shrink:0}
+nav a:hover{color:#fff}
+nav a.active{color:#7dd3fc;border-bottom:2px solid #7dd3fc}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#312e81 55%,#4c1d95 100%);color:#fff;padding:64px 0 56px}
+.hero h1{font-size:32px;line-height:1.3;margin-bottom:14px}
+.hero p.sub{font-size:17px;color:#c4b5fd;max-width:800px;margin-bottom:22px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{font-size:13px;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+.badge.g{background:rgba(16,185,129,.18);border-color:rgba(16,185,129,.4)}
+.badge.p{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.4)}
+.badge.o{background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.4)}
+.stats{display:flex;gap:26px;margin-top:28px;flex-wrap:wrap}
+.stat b{font-size:22px;display:block}
+.stat span{font-size:13px;color:#c4b5fd}
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+.sec-num{display:inline-block;font-size:12.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:6px;padding:3px 10px;margin-bottom:10px}
+h2{font-size:26px;margin-bottom:8px}
+h3{font-size:19px;margin:26px 0 10px;color:#0f172a}
+p{margin:10px 0}
+.lead{color:var(--muted);font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin:16px 0;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;padding:16px 18px;overflow-x:auto;font-size:13.5px;line-height:1.65;position:relative;margin:14px 0}
+code{font-family:"Cascadia Code",Consolas,"JetBrains Mono",monospace}
+pre code{white-space:pre}
+.cmd{color:#93c5fd}
+.comment{color:#64748b}
+.copy{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);color:#cbd5e1;border:1px solid rgba(255,255,255,.2);border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer}
+.copy:hover{background:rgba(255,255,255,.22)}
+.inline-code{font-family:Consolas,monospace;background:#eef2f7;color:#be185d;border-radius:5px;padding:1px 7px;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px;background:#fff;border-radius:10px;overflow:hidden}
+th,td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f1f5f9;font-weight:600;color:#334155}
+tr:last-child td{border-bottom:none}
+.tip{border-left:4px solid var(--brand);background:#eff6ff;padding:14px 18px;border-radius:8px;margin:16px 0;font-size:14.5px}
+.tip.warn{border-color:var(--warn);background:#fffbeb}
+.tip.ok{border-color:var(--ok);background:#f0fdf4}
+.tip.purple{border-color:var(--purple);background:#f5f3ff}
+.tip b{display:block;margin-bottom:4px}
+.pipe{display:flex;align-items:stretch;gap:0;margin:22px 0;flex-wrap:wrap}
+.pstep{flex:1;min-width:140px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;font-size:13.5px;position:relative;margin-right:26px}
+.pstep:last-child{margin-right:0}
+.pstep::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:18px}
+.pstep:last-child::after{content:""}
+.pstep b{display:block;color:var(--brand);margin-bottom:4px;font-size:14px}
+/* 对比条形图 */
+.barchart{margin:20px 0}
+.bar-row{display:flex;align-items:center;gap:12px;margin:10px 0}
+.bar-label{width:150px;font-size:13.5px;text-align:right;color:#475569;flex-shrink:0}
+.bar-track{flex:1;background:#eef2f7;border-radius:8px;height:34px;position:relative;overflow:visible}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;color:#fff;font-size:12.5px;font-weight:700;min-width:52px;transition:width .6s}
+.bar-note{font-size:12px;color:var(--muted);margin-top:4px;text-align:right;width:100%}
+footer{background:#0f172a;color:#94a3b8;padding:30px 0;text-align:center;font-size:13.5px}
+footer a{color:#c4b5fd;text-decoration:none}
+@media (max-width:640px){
+  .hero h1{font-size:24px}
+  h2{font-size:22px}
+  pre{font-size:12.5px}
+  .bar-label{width:110px}
+}
+.tbtn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-size:13.5px;cursor:pointer;color:var(--ink)}
+.tbtn:hover{border-color:var(--brand);color:var(--brand)}
+.tbtn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.tbtn-primary:hover{color:#fff;background:#1e40af}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">🔬 TE-CCL × AstraSim 实验报告</span>
+    <a href="#intro">01 实验</a>
+    <a href="#pipeline">02 接入管线</a>
+    <a href="#topo-viz">拓扑可视化</a>
+    <a href="#setup">03 实验设置</a>
+    <a href="#result">04 对比结果</a>
+    <a href="#why">05 为什么不同</a>
+    <a href="#formula">06 换算公式</a>
+    <a href="#repro">07 复现步骤</a>
+    <a href="#files">08 文件清单</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>TE-CCL × AstraSim<br>论文算法跑进真实模拟器</h1>
+    <p class="sub">把 SIGCOMM 2024 的流量工程集合通信调度器（TE-CCL）生成的调度计划，翻译成 AstraSim 能执行的轨迹，在同一拓扑下仿真，并对比"论文声称的完成时间"与"模拟器实测时间"。</p>
+    <div class="badges">
+      <span class="badge p">TE-CCL（微软, SIGCOMM 2024）</span>
+      <span class="badge">AstraSim 2.0</span>
+      <span class="badge g">Mesh 自定义拓扑</span>
+      <span class="badge o">16 NPU AllGather</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>240</b><span>调度传输条数（8 epochs）</span></div>
+      <div class="stat"><b>97,655</b><span>AstraSim 实测 (ns)</span></div>
+      <div class="stat"><b>167,772</b><span>TE-CCL 换算 (ns)</span></div>
+      <div class="stat"><b>~3×</b><span>vs 官方 Ring 加速</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="intro">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 01</span>
+    <h2>这个实验在回答什么问题？</h2>
+    <p class="lead"><b>TE-CCL</b>（Traffic-Engineering based Collective Communication）把集合通信建模成<b>多商品流问题</b>，用 MILP 求解器在一个给定拓扑上生成 <b>epoch 化的传输计划</b>（每个时隙谁把哪块数据发给谁）。</p>
+    <div class="card">
+      <h3>论文</h3>
+      <p><b>"Rethinking Machine Learning Collective Communication as a Multi-Commodity Flow Problem"</b> — Xuting Liu 等, <b>ACM SIGCOMM 2024</b>（Best Paper）。<br>
+      仓库：<span class="inline-code">https://github.com/microsoft/te-ccl</span></p>
+      <h3>实验问题</h3>
+      <p>TE-CCL 说"这个 AllGather 需要 <b>8 个 epoch</b>、完成时间 <b>8.0</b>（抽象单位）"。我们把它的计划原样翻译成 AstraSim 轨迹、在 4×4 Mesh 拓扑上仿真——<b>实测时间是多少？和它声称的完成时间一致吗？</b></p>
+    </div>
+    <div class="tip purple"><b>一句话结论</b>两者<b>模型等价、量级一致、数值不同</b>：TE-CCL 的 finish_time 是离散时隙模型的保守估计；AstraSim 的事件驱动流水线模拟出更精确（更快）的时间。差异 ~42%，完全可解释。</div>
+  </div>
+</section>
+
+<section id="pipeline">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 02</span>
+    <h2>接入管线：TE-CCL → AstraSim</h2>
+    <p class="lead">TE-CCL 的输出（schedule JSON）和 AstraSim 的输入（Chakra 轨迹）格式不同，中间需要两个翻译器——这条管线就是本次实验的核心资产。</p>
+    <div class="pipe">
+      <div class="pstep"><b>① TE-CCL 求解</b>topology + collective → MILP → schedule.json</div>
+      <div class="pstep"><b>② 转 plan</b>teccl_schedule_to_plan.py → plan.json</div>
+      <div class="pstep"><b>③ 转 ET</b>plan_to_et.py → 每 rank 一个 .et</div>
+      <div class="pstep"><b>④ 仿真</b>custom collective + Mesh 拓扑 → 时间</div>
+    </div>
+    <div class="card">
+      <h3>TE-CCL schedule 长什么样（真实文件）</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button>{
+  "1-Epoch_Duration": 1.0,        <span class="comment"># 每时隙时长（归一化单位）</span>
+  "3-Epochs_Required": 8,          <span class="comment"># 需要 8 个时隙</span>
+  "4-Collective_Finish_Time": 8.0, <span class="comment"># 声称的完成时间（抽象单位）</span>
+  "5-Algo_Bandwidth": 200,
+  "7-Flows": [                     <span class="comment"># 240 条传输计划</span>
+    "Chunk 0 from 9 traveled over 9-&gt;5 in epoch 0",
+    "Chunk 0 from 7 traveled over 7-&gt;11 in epoch 0",
+    ...
+  ]
+}</pre>
+      <p style="font-size:14px;color:var(--muted)">每条 flow = "某个 chunk 在第 e 个 epoch 从节点 a 传到节点 b"。这正好就是 AstraSim 自定义集合通信（CustomCollective）需要的 send/recv 步骤。</p>
+    </div>
+    <div class="card">
+      <h3>翻译出的 Chakra ET（rank 0 视角）</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button>COMM_SEND_NODE SEND_ep0_to_5  | tag=0  | 1MB  <span class="comment"># epoch 0: 9→5</span>
+COMM_RECV_NODE RECV_ep0_from_0 | tag=3  | 1MB
+COMM_SEND_NODE SEND_ep1_to_9  | tag=4  | 1MB  <span class="comment"># epoch 1</span>
+...</pre>
+      <p style="font-size:14px;color:var(--muted)">send 与对应 recv 用相同 <span class="inline-code">comm_tag</span> 配对；同一 epoch 内节点并行，跨 epoch 串行（依赖链）。</p>
+    </div>
+  </div>
+</section>
+
+<section id="topo-viz">
+  <div class="wrap">
+    <span class="sec-num">TOPOLOGY VISUALIZATION</span>
+    <h2>TE-CCL 拓扑可视化（矩阵驱动）</h2>
+    <p class="lead">TE-CCL 的每个拓扑本质上就是一个 <b>capacity 矩阵</b>（链路带宽）+ <b>alpha 矩阵</b>（链路延迟）。这里直接运行 TE-CCL 的拓扑代码，把 6 个真实拓扑画出来：<b>Mesh（240 条 flow）和 NDv2（210 条 flow，含交换机转发）可直接回放调度</b>。</p>
+    <div class="card">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+        <label style="font-size:14px;font-weight:600">拓扑：</label>
+        <select id="topo-select" class="tbtn" style="padding:7px 12px;font-size:13.5px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)"></select>
+        <button id="viz-prev" class="tbtn">⏮ 上一步</button>
+        <button id="viz-play" class="tbtn tbtn-primary">▶ 播放</button>
+        <button id="viz-next" class="tbtn">下一步 ⏭</button>
+        <span id="viz-label" style="font-size:13.5px;font-weight:700;color:var(--brand)"></span>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start">
+        <div style="position:relative">
+          <svg id="topo-svg" width="520" height="470" viewBox="0 0 520 470" style="background:#f8fafc;border:1px solid var(--line);border-radius:12px;flex-shrink:0"></svg>
+          <div id="topo-stats" style="position:absolute;top:10px;left:12px;font-size:12px;color:#334155;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:8px;padding:6px 10px;line-height:1.7"></div>
+        </div>
+        <div style="flex:1;min-width:260px">
+          <div class="tip" style="font-size:13px;margin-top:0"><b>图例</b>蓝圆 = GPU/NPU · 紫方 = <b>交换机</b> · 连线粗细/颜色 = 链路相对带宽（capacity）· 回放时：<b>红色实线</b> = 直连传输，<b>红色虚线</b> = 经交换机转发（NDv2 有 32 条）</div>
+          <div id="viz-info" style="font-size:13px;font-family:Consolas,monospace;color:#334155;background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:12px;max-height:220px;overflow-y:auto;line-height:1.8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="setup">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 03</span>
+    <h2>实验设置</h2>
+    <table>
+      <tr><th>项</th><th>值</th></tr>
+      <tr><td>Workload</td><td>16-NPU AllGather，1 MB（Chakra microbenchmark）</td></tr>
+      <tr><td>拓扑</td><td>4×4 Mesh（自定义 BasicTopology，曼哈顿距离跳数）</td></tr>
+      <tr><td>链路</td><td>50 GB/s；延迟 0 ns（对齐 TE-CCL alpha=0）与 500 ns 两组</td></tr>
+      <tr><td>算法 A</td><td>TE-CCL 调度（240 条 flow / 8 epochs，custom collective）</td></tr>
+      <tr><td>算法 B（对照）</td><td>官方原生 Ring AllGather（同一 Mesh 拓扑）</td></tr>
+      <tr><td>后端</td><td>AstraSim_Analytical_Congestion_Unaware</td></tr>
+    </table>
+    <div class="tip"><b>为什么实现 Mesh 拓扑？</b>AstraSim 默认只有 Ring / Switch / FullyConnected。TE-CCL 的计划假设 4×4 网格连接，所以必须新增（且精确复刻 TE-CCL 的 <b>27 条边</b>——含 3 条蛇形边 3-4/7-8/11-12，见上方可视化） <span class="inline-code">Mesh</span> 拓扑类（unaware 版实现 <span class="inline-code">compute_hops_count</span> = 曼哈顿距离；aware 版用 <span class="inline-code">connect()</span> 建链 + <span class="inline-code">route()</span> 返回路径），并注册到枚举/解析器/工厂三处。</div>
+  </div>
+</section>
+
+<section id="result">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 04</span>
+    <h2>对比结果</h2>
+    <div class="barchart">
+      <div class="bar-row"><div class="bar-label">TE-CCL 声称<br>(换算为 ns)</div><div class="bar-track"><div class="bar-fill" style="width:33%;background:#7c3aed">167,772</div></div></div>
+      <div class="bar-row"><div class="bar-label">unaware 后端<br>TE-CCL 调度</div><div class="bar-track"><div class="bar-fill" style="width:19.2%;background:#059669">97,655</div></div></div>
+      <div class="bar-row"><div class="bar-label">unaware 后端<br>官方 Ring</div><div class="bar-track"><div class="bar-fill" style="width:57.7%;background:#f59e0b">293,125</div></div></div>
+      <div class="bar-row"><div class="bar-label">aware 后端（有拥塞）<br>TE-CCL 调度</div><div class="bar-track"><div class="bar-fill" style="width:19.2%;background:#16a34a">97,655</div></div></div>
+      <div class="bar-row"><div class="bar-label">aware 后端（有拥塞）<br>官方 Ring</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#dc2626">429,812~507,846</div></div></div>
+      <div class="bar-note">条形宽度按 aware+Ring 的最大值 507,846 ns 归一化</div>
+    </div>
+    <table>
+      <tr><th>方案</th><th>时间 (ns)</th><th>相对 TE-CCL 声称</th><th>TE-CCL 优势</th></tr>
+      <tr><td><b>TE-CCL 声称</b>（8.0 抽象单位 → 换算）</td><td><b>167,772</b></td><td>1.00×</td><td>—</td></tr>
+      <tr><td><b>unaware 后端</b> · TE-CCL 调度</td><td><b>97,655</b></td><td>0.58×</td><td>3.0× vs Ring</td></tr>
+      <tr><td>unaware 后端 · 官方 Ring</td><td>293,125</td><td>1.75×</td><td>—</td></tr>
+      <tr><td><b>aware 后端（含拥塞）</b> · TE-CCL 调度</td><td><b>97,655</b></td><td>0.58×</td><td><b>4.4~5.2×</b> vs Ring</td></tr>
+      <tr><td>aware 后端（含拥塞） · 官方 Ring</td><td>429,812 ~ 507,846</td><td>2.56~3.03×</td><td>—</td></tr>
+    </table>
+    <div class="tip ok"><b>✅ 论文结论在模拟器中复现（且随拥塞放大）</b>TE-CCL 的流量工程调度在 Mesh 拓扑上：
+      <br>· <b>unaware</b>（无拥塞）：比 Ring 快 <b>3.0×</b>（97,655 vs 293,125 ns）
+      <br>· <b>aware</b>（含拥塞）：Ring 被拥塞惩罚 46%~73%，TE-CCL 优势扩大到 <b>4.4~5.2×</b>（97,655 vs 429,812~507,846 ns）
+      <br>· 关键：TE-CCL 调度在拥塞模型下<b>时间不变</b>——它的流量工程把 240 条 flow 分散到无争用的路径，这正是 SIGCOMM 2024 论文的核心主张。</div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 05</span>
+    <h2>为什么"声称"与"实测"不同？</h2>
+    <p class="lead">差异不是错误，而是两种<b>时间模型</b>的根本区别：</p>
+    <table>
+      <tr><th></th><th>TE-CCL（离散时隙）</th><th>AstraSim（事件驱动）</th></tr>
+      <tr><td>时间单位</td><td>epoch（抽象时隙）</td><td>ns（真实时钟）</td></tr>
+      <tr><td>chunk 转发</td><td>到达后<b>等下一时隙边界</b>才能继续转发</td><td>到达后<b>立即转发</b>（流水线）</td></tr>
+      <tr><td>并行语义</td><td>所有链路按 epoch 同步推进</td><td>每个 rank 独立事件流，无全局 barrier</td></tr>
+      <tr><td>延迟 (alpha)</td><td>建模为 alpha（本实验为 0）</td><td>latency 参数独立建模</td></tr>
+      <tr><td>完成时间</td><td>epochs × epoch_duration（保守估计）</td><td>最长依赖链的实际耗时（更精确）</td></tr>
+    </table>
+    <div class="card">
+      <h3>源码证据（TE-CCL allgather.py）</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="comment"># 每 epoch 每条链路最多传输 capacity×epoch_duration 个 chunk</span>
+epoch_capacity = self.topology.capacity[i][j] * self.epoch_duration
+...
+<span class="comment"># capacity=1 时：一个 chunk 必须占满整整一个 epoch 才能传输</span>
+<span class="comment"># → chunk 到达中间节点后，转发最早发生在下一个 epoch</span></pre>
+      <p style="font-size:14px;color:var(--muted)">这就是"时隙化调度器"（TACCL / TE-CCL 通用做法）相对真实系统的固有误差：它给每个传输分配整数时隙，放弃了流水线重叠。AstraSim 精确模拟出这些重叠，所以时间更短。</p>
+    </div>
+    <div class="card">
+      <h3>🔴 拥塞在哪里？（aware 后端实证）</h3>
+      <p>启用拥塞模型（<span class="inline-code">AstraSim_Analytical_Congestion_Aware</span>）后，两条路径的结果分化明显：</p>
+      <table>
+        <tr><th>算法</th><th>unaware</th><th>aware</th><th>拥塞代价</th></tr>
+        <tr><td>TE-CCL 调度</td><td>97,655 ns</td><td>97,655 ns</td><td><b>0%（完全避开了拥塞）</b></td></tr>
+        <tr><td>官方 Ring</td><td>293,125 ns</td><td>429,812~507,846 ns</td><td><b>+46%~73%</b></td></tr>
+      </table>
+      <p style="font-size:14px;color:var(--muted)">Ring 的拥塞来自：逻辑环在 Mesh 物理拓扑上，相邻逻辑节点的物理路径在多条流之间<b>共享链路</b>（尤其 0-1、14-15 等角落瓶颈边）。TE-CCL 的 MILP 显式平衡了链路负载，所以它的调度在拥塞模型下时间不变——这解释了"流量工程调度"论文的核心价值。</p>
+    </div>
+  </div>
+</section>
+
+<section id="formula">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 06</span>
+    <h2>换算公式（怎么把"抽象时间"变成"真实时间"）</h2>
+    <div class="card">
+      <pre><button class="copy" onclick="copyCode(this)">复制</button>TE-CCL finish(真实 ns) = Epochs_Required × (1 个 chunk 的传输时间)
+                        = 8 × (chunk_bytes ÷ bandwidth)
+                        = 8 × (1048576 B ÷ 50 GB/s)
+                        = 167,772 ns</pre>
+      <p style="font-size:14.5px">依据：TE-CCL 的 <span class="inline-code">epoch_duration = 1 / 最快链路容量</span>，而链路容量 <span class="inline-code">= 100 / chunk_size(GB)</span>，两者相乘恰好消去归一化，等价于"传一个 chunk 的真实时间"。<b>证明 TE-CCL 的模型 = 纯带宽模型（无拥塞、无延迟）</b>，与 AstraSim analytical 后端数学同源。</p>
+    </div>
+    <div class="tip warn"><b>⚠️ 用哪个数值写进论文？</b>如果你想报告"TE-CCL 声称的时间"，请注明它是<b>时隙模型估计</b>（本例 167,772 ns）；想报告"真实可达到的性能"，用 AstraSim 实测（97,655 ns）。两者差 42%，正是时隙抽象的代价。</div>
+  </div>
+</section>
+
+<section id="repro">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 07</span>
+    <h2>复现步骤（在你机器上重新跑一遍）</h2>
+    <div class="card">
+      <h3>① 环境</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="comment"># WSL2 + Ubuntu 22.04，已装好 AstraSim（三个后端）</span>
+<span class="cmd">$</span> git clone https://github.com/microsoft/te-ccl.git   <span class="comment"># 走镜像 ghfast.top</span></pre>
+      <h3>② 转换调度计划</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> python3 teccl_schedule_to_plan.py \
+    --schedule te-ccl/teccl/examples/schedules/mesh_4.json \
+    --output examples/system/custom_collectives/teccl_mesh4/plan.json \
+    --collective all_gather</pre>
+      <h3>③ 生成 Chakra 轨迹 + 配置</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> cd examples/system/custom_collectives/teccl_mesh4
+<span class="cmd">$</span> python3 plan_to_et.py --plan plan.json --output-prefix teccl_mesh4
+<span class="cmd">$</span> cat &gt; mesh_16npus_nolat.yml &lt;&lt;'EOF'
+topology: [ Mesh ]
+npus_count: [ 16 ]
+bandwidth: [ 50.0 ]
+latency: [ 0.0 ]
+EOF</pre>
+      <h3>④ 仿真</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="cmd">$</span> cd /home/xm/astra-sim
+<span class="cmd">$</span> ./build/astra_analytical/build/bin/AstraSim_Analytical_Congestion_Unaware \
+    --workload-configuration=examples/workload/microbenchmarks/all_gather/16npus_1MB/all_gather \
+    --system-configuration=examples/system/custom_collectives/teccl_mesh4/teccl_mesh4_system.json \
+    --remote-memory-configuration=examples/remote_memory/analytical/no_memory_expansion.json \
+    --network-configuration=examples/system/custom_collectives/teccl_mesh4/mesh_16npus_nolat.yml
+<span class="comment"># 输出：Wall time: 97655（延迟0）/ 100155（延迟500ns）</span></pre>
+      <h3>⑤ 对照：官方 Ring</h3>
+      <pre><button class="copy" onclick="copyCode(this)">复制</button><span class="comment"># system json 里把 all-gather-implementation-custom 换成：</span>
+"all-gather-implementation": ["ring"]
+<span class="comment"># 预期：Wall time ~305125</span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="files">
+  <div class="wrap">
+    <span class="sec-num">CHAPTER 08</span>
+    <h2>文件清单与扩展方向</h2>
+    <table>
+      <tr><th>文件</th><th>作用</th></tr>
+      <tr><td><span class="inline-code">guide/teccl_schedule_to_plan.py</span></td><td>TE-CCL schedule → plan.json</td></tr>
+      <tr><td><span class="inline-code">guide/plan_to_et.py</span></td><td>plan.json → Chakra ET（每 rank）</td></tr>
+      <tr><td><span class="inline-code">examples/system/custom_collectives/teccl_mesh4/</span></td><td>plan / ET / system json / mesh yml 工作区</td></tr>
+      <tr><td><span class="inline-code">extern/.../basic-topology/Mesh.{h,cpp}</span></td><td>自定义 Mesh 拓扑（unaware + aware 两版）</td></tr>
+      <tr><td><span class="inline-code">te-ccl/teccl/examples/schedules/</span></td><td>TE-CCL 自带 schedule（mesh_4 / mesh_6 / ndv2）</td></tr>
+    </table>
+    <h3>扩展方向</h3>
+    <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">
+      <div class="card" style="margin:0"><b>换 schedule</b><br>ndv2_schedule.json / mesh_6.json 一条命令转 plan 重跑</div>
+      <div class="card" style="margin:0"><b>拥塞验证</b><br>换 congestion_aware 后端，看 TE-CCL 调度在拥塞下是否仍优</div>
+      <div class="card" style="margin:0"><b>复现时隙语义</b><br>在 ET 每 epoch 后加全局同步节点，逼近 TE-CCL 的 167,772 ns</div>
+      <div class="card" style="margin:0"><b>自己求解</b><br>Gurobi 学术 license + pip install gurobipy → 任意拓扑生成新 schedule</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    TE-CCL × AstraSim 实验报告 · 基于真实安装与仿真整理<br>
+    回到 <a href="index.html">AstraSim 学习指南主页</a>
+  </div>
+</footer>
+
+<script>
+function copyCode(btn){
+  var pre = btn.parentElement;
+  var text = pre.innerText.replace(/^复制\n/, "");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent = "已复制 ✓";
+      setTimeout(function(){ btn.textContent = "复制"; }, 1500);
+    }, function(){ fallbackCopy(pre, btn); });
+  } else { fallbackCopy(pre, btn); }
+}
+function fallbackCopy(pre, btn){
+  var range = document.createRange();
+  range.selectNodeContents(pre);
+  var sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+  try { document.execCommand("copy"); btn.textContent = "已复制 ✓"; }
+  catch(e){ btn.textContent = "复制失败"; }
+  setTimeout(function(){ btn.textContent = "复制"; }, 1500);
+  sel.removeAllRanges();
+}
+var navLinks = document.querySelectorAll("nav a");
+var sections = [];
+navLinks.forEach(function(a){
+  var id = a.getAttribute("href").slice(1);
+  sections.push(document.getElementById(id));
+});
+window.addEventListener("scroll", function(){
+  var pos = window.scrollY + 120;
+  var current = navLinks[0];
+  sections.forEach(function(sec, i){
+    if(sec && sec.offsetTop <= pos){ current = navLinks[i]; }
+  });
+  navLinks.forEach(function(a){ a.classList.remove("active"); });
+  current.classList.add("active");
+});
+</script>
+  <script src="flow_data.js"></script>
+  <script src="topo_data.js"></script>
+  <script>
+/* ---- 拓扑可视化 v3（矩阵驱动 + 多拓扑 flow 回放） ---- */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('topo-svg');
+  var TOPOS = (window.TECCL_TOPOS || []);
+  var FLOWDATA = (window.TECCL_FLOWS || {});
+  var curTopo = null, curEpoch = -1, timer = null;
+
+  function nodePos(topo, idx){
+    if(topo.layout === 'grid'){
+      var side = Math.round(Math.sqrt(topo.nodes));
+      return {x: 90 + (idx % side) * 105, y: 90 + Math.floor(idx / side) * 105};
+    }
+    var n = topo.nodes, R = 175, cx = 260, cy = 235;
+    var a = (2 * Math.PI * idx) / n - Math.PI / 2;
+    return {x: cx + R * Math.cos(a), y: cy + R * Math.sin(a)};
+  }
+  function flowsFor(topo){ return topo ? FLOWDATA[topo.name] : null; }
+
+  function makeLine(p1, p2, attrs){
+    var line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', p1.x); line.setAttribute('y1', p1.y);
+    line.setAttribute('x2', p2.x); line.setAttribute('y2', p2.y);
+    Object.keys(attrs).forEach(function(k){ line.setAttribute(k, attrs[k]); });
+    svg.appendChild(line);
+  }
+
+  function draw(){
+    if(!svg || !curTopo) return;
+    svg.innerHTML = '';
+    var topo = curTopo;
+    var flows = flowsFor(topo);
+    var stats = document.getElementById('topo-stats');
+    stats.innerHTML = topo.name + '<br>节点 ' + topo.nodes + ' · 链路 ' + topo.edges.length + '<br>交换机 ' + (topo.switches.length || 0) + ' 个' + (flows ? '<br>调度 ' + flows.epochs.length + ' epochs' : '');
+    var hl = {};
+    if(flows && curEpoch >= 0 && flows.epochs[curEpoch]){
+      flows.epochs[curEpoch].comm.forEach(function(c){
+        var k = (c[0] < c[1] ? c[0] + '-' + c[1] : c[1] + '-' + c[0]);
+        hl[k] = c;
+      });
+    }
+    var switchId = (topo.switches && topo.switches.length) ? topo.switches[0] : -1;
+    // 边
+    topo.edges.forEach(function(e){
+      var a = nodePos(topo, e[0]), b = nodePos(topo, e[1]);
+      var key = (e[0] < e[1] ? e[0] + '-' + e[1] : e[1] + '-' + e[0]);
+      var flow = hl[key];
+      if(flow){
+        var via = flow.length > 2;
+        if(via && switchId >= 0){
+          var sw = nodePos(topo, switchId);
+          makeLine(a, sw, {'stroke': '#dc2626', 'stroke-width': '3', 'stroke-dasharray': '5,3', 'opacity': '0.9'});
+          makeLine(sw, b, {'stroke': '#dc2626', 'stroke-width': '3', 'stroke-dasharray': '5,3', 'opacity': '0.9'});
+        } else {
+          makeLine(a, b, {'stroke': '#dc2626', 'stroke-width': '5', 'stroke-linecap': 'round', 'opacity': '0.95'});
+        }
+      } else {
+        var w = 1 + Math.round(e[2] * 5);
+        var col = e[2] >= 0.8 ? '#7c3aed' : (e[2] >= 0.4 ? '#2563eb' : '#93c5fd');
+        makeLine(a, b, {'stroke': col, 'stroke-width': w, 'opacity': '0.85'});
+      }
+    });
+    // 节点
+    var switchSet = {};
+    (topo.switches || []).forEach(function(s){ switchSet[s] = true; });
+    for(var i = 0; i < topo.nodes; i++){
+      var p = nodePos(topo, i);
+      var isSw = switchSet[i];
+      var el = document.createElementNS(NS, isSw ? 'rect' : 'circle');
+      if(isSw){
+        el.setAttribute('x', p.x - 15); el.setAttribute('y', p.y - 15); el.setAttribute('width', 30); el.setAttribute('height', 30); el.setAttribute('rx', 6);
+        el.setAttribute('fill', '#7c3aed'); el.setAttribute('stroke', '#4c1d95');
+      } else {
+        el.setAttribute('cx', p.x); el.setAttribute('cy', p.y); el.setAttribute('r', 16);
+        el.setAttribute('fill', '#3b82f6'); el.setAttribute('stroke', '#1e3a8a');
+      }
+      el.setAttribute('stroke-width', '2');
+      svg.appendChild(el);
+      var txt = document.createElementNS(NS, 'text');
+      txt.setAttribute('x', p.x); txt.setAttribute('y', p.y + 4);
+      txt.setAttribute('text-anchor', 'middle'); txt.setAttribute('font-size', '10.5'); txt.setAttribute('fill', '#fff'); txt.setAttribute('font-weight', 'bold');
+      txt.textContent = i;
+      svg.appendChild(txt);
+    }
+  }
+
+  function updateInfo(){
+    var info = document.getElementById('viz-info');
+    var lbl = document.getElementById('viz-label');
+    if(!info || !curTopo) return;
+    var flows = flowsFor(curTopo);
+    if(!flows){
+      lbl.textContent = '';
+      info.innerHTML = '拓扑 ' + curTopo.name + '：暂无现成调度。<br>用 TE-CCL 求解后接入即可回放（见复现步骤）。';
+      return;
+    }
+    if(curEpoch < 0){
+      lbl.textContent = '全部链路 / ' + flows.epochs.length + ' epochs';
+      info.innerHTML = curTopo.name + ' 的调度：' + flows.epochs.length + ' 个 epoch，共 ' + flows.epochs.reduce(function(s, e){ return s + e.comm.length; }, 0) + ' 条传输。<br>点「▶ 播放」回放；红色实线=直连，红色虚线=经交换机转发。';
+    } else {
+      var ep = flows.epochs[curEpoch];
+      lbl.textContent = 'Epoch ' + (curEpoch + 1) + ' / ' + flows.epochs.length;
+      var lines = ep.comm.map(function(c){
+        var via = c.length > 2 ? '（经SW' + (curTopo.switches && curTopo.switches.length ? curTopo.switches[0] : '') + '）' : '';
+        return 'N' + c[0] + '→N' + c[1] + via;
+      });
+      info.innerHTML = 'epoch ' + curEpoch + ' 共 ' + ep.comm.length + ' 条传输：<br>' + lines.join('&nbsp;&nbsp;');
+    }
+  }
+
+  function selectTopo(name){
+    TOPOS.forEach(function(tp){ if(tp.name === name) curTopo = tp; });
+    curEpoch = -1;
+    if(timer){ clearInterval(timer); timer = null; var bp = document.getElementById('viz-play'); if(bp) bp.textContent = '▶ 播放'; }
+    draw(); updateInfo();
+  }
+
+  function init(){
+    var sel = document.getElementById('topo-select');
+    TOPOS.forEach(function(tp){
+      var o = document.createElement('option');
+      o.value = tp.name; o.textContent = tp.name + '（' + tp.nodes + ' 节点）' + (flowsFor(tp) ? ' ★可回放' : '');
+      sel.appendChild(o);
+    });
+    sel.onchange = function(){ selectTopo(sel.value); };
+    function hasFlows(){ return curTopo && flowsFor(curTopo); }
+    var bp = document.getElementById('viz-prev'), bn = document.getElementById('viz-next'),
+        bpl = document.getElementById('viz-play');
+    if(bp) bp.onclick = function(){ if(hasFlows()){ curEpoch = curEpoch <= 0 ? -1 : curEpoch - 1; draw(); updateInfo(); } };
+    if(bn) bn.onclick = function(){ if(hasFlows()){ var n = flowsFor(curTopo).epochs.length; curEpoch = curEpoch >= n - 1 ? n - 1 : curEpoch + 1; draw(); updateInfo(); } };
+    if(bpl) bpl.onclick = function(){
+      if(!hasFlows()){ updateInfo(); return; }
+      if(timer){ clearInterval(timer); timer = null; bpl.textContent = '▶ 播放'; return; }
+      bpl.textContent = '⏸ 暂停';
+      var n = flowsFor(curTopo).epochs.length;
+      curEpoch = -1;
+      timer = setInterval(function(){
+        curEpoch++;
+        if(curEpoch >= n){ clearInterval(timer); timer = null; bpl.textContent = '▶ 播放'; curEpoch = -1; }
+        draw(); updateInfo();
+      }, 900);
+      draw(); updateInfo();
+    };
+    selectTopo('Mesh');
+  }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
+  else { init(); }
+})();
+</script>
+</body>
+</html>
