@@ -12,7 +12,59 @@ redirect_from:
 <span class='anchor' id='about-me'></span>
 {% include_relative includes/intro.md %}
 
+<div class="visitor-counter" aria-label="Website visitor statistics">
+  <span class="visitor-counter__item">
+    <i class="fas fa-user-friends" aria-hidden="true"></i>
+    Visitors <strong id="busuanzi_site_uv">Loading...</strong>
+  </span>
+  <span class="visitor-counter__divider" aria-hidden="true"></span>
+  <span class="visitor-counter__item">
+    <i class="fas fa-eye" aria-hidden="true"></i>
+    Views <strong id="busuanzi_site_pv">Loading...</strong>
+  </span>
+</div>
+
+<script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+
 <style>
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 18px;
+  padding: 8px 13px;
+  border: 1px solid #e1e7ef;
+  border-radius: 999px;
+  color: #536273;
+  background: #f8fafc;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.visitor-counter__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.visitor-counter__item i {
+  color: #224b8d;
+}
+.visitor-counter__item strong {
+  color: #1f2937;
+  font-variant-numeric: tabular-nums;
+}
+.visitor-counter__divider {
+  width: 1px;
+  height: 14px;
+  background: #d5dde8;
+}
+@media (max-width: 480px) {
+  .visitor-counter {
+    gap: 9px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}
 .toggle-link {
   display: inline-block;
   margin: 5px 0 10px 0;
